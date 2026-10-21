@@ -3,7 +3,7 @@ selected_params:
   atr_mult: 4.0
   key: N100_k4
 selection_metric: sharpe
-dev_sharpe: 1.1691374483576211
+dev_sharpe: 1.2053504225733596
 n_grid_candidates: 9
 grid:
 - N20_k2

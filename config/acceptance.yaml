@@ -1,7 +1,7 @@
 # Criterios de aceptación. Valores iniciales convencionales, NO verdades universales.
 # Este archivo se congela (commit + hash SHA-256 en config/freeze.json) ANTES de evaluar el holdout.
 # Cualquier cambio posterior invalida la evaluación del holdout.
-version: "1.0.0"
+version: "1.1.0"
 out_of_sample_period: holdout          # periodo sobre el que se aplican los criterios "fuera de muestra"
 
 thresholds:

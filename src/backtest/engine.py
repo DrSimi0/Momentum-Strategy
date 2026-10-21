@@ -33,9 +33,36 @@ class CostModel:
     fee_rate: float = 0.0005
     slippage_rate: float = 0.0005
     funding_multiplier: float = 1.0  # solo se aplica al funding PAGADO
+    fee_rate_maker: float | None = None
+    slippage_rate_maker: float | None = None
+    use_bnb_discount: bool = False
+
+    @property
+    def maker_fee(self) -> float:
+        rate = self.fee_rate_maker if self.fee_rate_maker is not None else self.fee_rate
+        return rate * 0.9 if self.use_bnb_discount else rate
+
+    @property
+    def taker_fee(self) -> float:
+        return self.fee_rate * 0.9 if self.use_bnb_discount else self.fee_rate
+
+    @property
+    def maker_slippage(self) -> float:
+        return self.slippage_rate_maker if self.slippage_rate_maker is not None else self.slippage_rate
+
+    @property
+    def taker_slippage(self) -> float:
+        return self.slippage_rate
 
     def scaled(self, factor: float) -> "CostModel":
-        return CostModel(self.fee_rate * factor, self.slippage_rate * factor, self.funding_multiplier * factor)
+        return CostModel(
+            fee_rate=self.fee_rate * factor,
+            slippage_rate=self.slippage_rate * factor,
+            funding_multiplier=self.funding_multiplier * factor,
+            fee_rate_maker=self.fee_rate_maker * factor if self.fee_rate_maker is not None else None,
+            slippage_rate_maker=self.slippage_rate_maker * factor if self.slippage_rate_maker is not None else None,
+            use_bnb_discount=self.use_bnb_discount,
+        )
 
 
 @dataclass(frozen=True)
@@ -121,7 +148,9 @@ def run_backtest(bars: pd.DataFrame, params: StrategyParams, cfg: BacktestConfig
     i0, i1 = period_slice(bars, start, end)
     if i0 < params.channel_n + cfg.atr_period:
         raise ValueError("Calentamiento insuficiente antes del periodo")
-    fee, slip, fmult = cfg.costs.fee_rate, cfg.costs.slippage_rate, cfg.costs.funding_multiplier
+    m_fee, m_slip = cfg.costs.maker_fee, cfg.costs.maker_slippage
+    t_fee, t_slip = cfg.costs.taker_fee, cfg.costs.taker_slippage
+    fmult = cfg.costs.funding_multiplier
     mmr, k = cfg.maintenance_margin_rate, params.atr_mult
 
     cash = cfg.initial_capital
@@ -137,7 +166,7 @@ def run_backtest(bars: pd.DataFrame, params: StrategyParams, cfg: BacktestConfig
 
     def close_trade(i: int, raw: float, fill: float, reason: str, extra_fee: float = 0.0) -> None:
         nonlocal cash, cum_fee, cum_slip, side, qty
-        f = fee * qty * fill + extra_fee
+        f = t_fee * qty * fill + extra_fee
         s = qty * abs(fill - raw)
         cash += side * qty * (fill - entry_fill) - f
         cum_fee += f
@@ -155,11 +184,11 @@ def run_backtest(bars: pd.DataFrame, params: StrategyParams, cfg: BacktestConfig
         if pending and last_equity > 0:
             dist = k * atr[i - 1]
             raw = o[i]
-            entry_fill = raw * (1 + pending * slip)
+            entry_fill = raw * (1 + pending * m_slip)
             q = cfg.risk_per_trade * last_equity / dist
             q = min(q, cfg.max_leverage * last_equity / entry_fill)
             side, qty = pending, q
-            f = fee * qty * entry_fill
+            f = m_fee * qty * entry_fill
             s = qty * abs(entry_fill - raw)
             cash -= f
             cum_fee += f
@@ -168,8 +197,8 @@ def run_backtest(bars: pd.DataFrame, params: StrategyParams, cfg: BacktestConfig
             extreme = entry_fill
             liq = _liq_price(side, qty, entry_fill, last_equity - f, mmr)
             tr = dict(entry_time=times.iloc[i], side=side, qty=qty, entry_raw=raw, entry_price=entry_fill,
-                      notional_entry=qty * entry_fill, equity_at_entry=last_equity, risk_usdt=qty * dist,
-                      fees=f, slippage=s, funding=0.0, _i=i)
+                       notional_entry=qty * entry_fill, equity_at_entry=last_equity, risk_usdt=qty * dist,
+                       fees=f, slippage=s, funding=0.0, _i=i)
             just_entered = True
         else:
             just_entered = False
@@ -189,14 +218,14 @@ def run_backtest(bars: pd.DataFrame, params: StrategyParams, cfg: BacktestConfig
                 close_trade(i, liq, liq, "liquidation", extra_fee=mmr * qty * liq)
             elif l[i] <= stop:
                 raw = min(o[i], stop)
-                close_trade(i, raw, raw * (1 - slip), "stop")
+                close_trade(i, raw, raw * (1 - t_slip), "stop")
         elif side < 0:
             if (not just_entered and o[i] >= liq) or (h[i] >= liq and liq < stop):
                 liquidations += 1
                 close_trade(i, liq, liq, "liquidation", extra_fee=mmr * qty * liq)
             elif h[i] >= stop:
                 raw = max(o[i], stop)
-                close_trade(i, raw, raw * (1 + slip), "stop")
+                close_trade(i, raw, raw * (1 + t_slip), "stop")
 
         if side != 0:
             if side > 0:
@@ -206,7 +235,7 @@ def run_backtest(bars: pd.DataFrame, params: StrategyParams, cfg: BacktestConfig
                 extreme = min(extreme, l[i])
                 stop = min(stop, extreme + k * atr[i])
             if i == i1:
-                close_trade(i, c[i], c[i] * (1 - side * slip), "end_of_period")
+                close_trade(i, c[i], c[i] * (1 - side * t_slip), "end_of_period")
 
         notional = side * qty * c[i]
         equity = cash + (side * qty * (c[i] - entry_fill) if side != 0 else 0.0)

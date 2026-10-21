@@ -71,3 +71,16 @@ Este documento registra de forma inmutable y transparente todas las decisiones t
   - **INCONCLUSIVE:** Si no hay fallo eliminatorio pero el número de operaciones OOS $< 50$ (si $< 30$, INCONCLUSIVE automático), o si el IC 95% de la expectativa incluye el cero, o si el Deflated Sharpe Ratio no alcanza el umbral de $0.95$, o si algún otro criterio estándar no se cumple.
   - **PASS:** Exclusivamente si la totalidad de los criterios de `acceptance.yaml` son satisfechos.
   - El reporte manifiesta explícitamente: *"PASS significa evidencia consistente de edge en el pasado bajo este protocolo, nunca garantía de rentabilidad futura"*.
+
+---
+
+### DEC-008: Iteración v1.1.0 - Reducción de Comisiones (Maker en Entrada y Descuento BNB)
+- **Motivo:** En la evaluación v1.0.0, los costos representaron el 81% de la ganancia bruta en Holdout, dictaminando veredicto FAIL por retención (2.98%) y estrés de costos x2 negativo. El usuario solicitó implementar recomendaciones de mitigación de costos.
+- **Modificaciones implementadas:**
+  - Entrada con órdenes límite (Maker): comisión reducida a 0.02% (Binance VIP0) y deslizamiento de entrada fijado en 0.0 bps (la orden límite garantiza el precio de fill).
+  - Salidas de stop y liquidación se mantienen como Taker (0.05% y 5 bps de slippage).
+  - Descuento BNB: se activa el 10% de reducción en comisiones por pago con balance BNB (0.018% maker / 0.045% taker).
+- **Protocolo de Re-evaluación:**
+  - Se versiona el protocolo a v1.1.0 en `config/acceptance.yaml`.
+  - Se limpian artefactos y bloqueo del Holdout anterior de v1.0.0 de forma documentada y justificada.
+  - Se re-ejecuta la etapa `pre` (selección en desarrollo), se congelan los nuevos hashes con commit en Git y se re-evalúa el Holdout.

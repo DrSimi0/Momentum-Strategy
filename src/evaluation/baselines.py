@@ -22,7 +22,9 @@ def simulate_fixed_trades(bars: pd.DataFrame, specs: list[tuple[int, int, int, f
     frate = np.nan_to_num(bars["funding_rate"].to_numpy(float))
     fprice = bars["funding_price"].to_numpy(float)
     times = bars["open_time"]
-    fee, slip, fmult = cfg.costs.fee_rate, cfg.costs.slippage_rate, cfg.costs.funding_multiplier
+    m_fee, m_slip = cfg.costs.maker_fee, cfg.costs.maker_slippage
+    t_fee, t_slip = cfg.costs.taker_fee, cfg.costs.taker_slippage
+    fmult = cfg.costs.funding_multiplier
     mmr = cfg.maintenance_margin_rate
     n = i1 - i0 + 1
     eq = np.empty(n)
@@ -36,9 +38,9 @@ def simulate_fixed_trades(bars: pd.DataFrame, specs: list[tuple[int, int, int, f
         eq[cursor - i0:a - i0] = cash
         cfee[cursor - i0:a - i0], cslip[cursor - i0:a - i0], cfund[cursor - i0:a - i0] = tf, ts, tfu
         raw_in = o[a]
-        fill_in = raw_in * (1 + side * slip)
+        fill_in = raw_in * (1 + side * m_slip)
         qty = lev * cash / fill_in
-        fee_in, slip_in = fee * qty * fill_in, qty * abs(fill_in - raw_in)
+        fee_in, slip_in = m_fee * qty * fill_in, qty * abs(fill_in - raw_in)
         seg = slice(a, b + 1)
         pay = side * qty * fprice[seg] * frate[seg]
         pay[0] = 0.0  # la barra de entrada no paga funding
@@ -56,12 +58,12 @@ def simulate_fixed_trades(bars: pd.DataFrame, specs: list[tuple[int, int, int, f
             b, seg = a + j, slice(a, a + j + 1)
             mtm, cum_pay = mtm[: j + 1], cum_pay[: j + 1]
             raw_out = fill_out = adverse[j]
-            fee_out = mmr * qty * raw_out + fee * qty * raw_out
+            fee_out = mmr * qty * raw_out + t_fee * qty * raw_out
             reason = "liquidation"
         else:
             raw_out = c[b]
-            fill_out = raw_out * (1 - side * slip)
-            fee_out = fee * qty * fill_out
+            fill_out = raw_out * (1 - side * t_slip)
+            fee_out = t_fee * qty * fill_out
         slip_out = qty * abs(fill_out - raw_out)
         fund = float(cum_pay[-1])
         new_cash = max(cash - fee_in - fund + side * qty * (fill_out - fill_in) - fee_out, 0.0)

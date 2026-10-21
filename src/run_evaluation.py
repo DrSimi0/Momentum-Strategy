@@ -29,7 +29,7 @@ import numpy as np
 import pandas as pd
 import yaml
 
-from src.backtest.engine import BacktestConfig, StrategyParams, run_backtest
+from src.backtest.engine import BacktestConfig, CostModel, StrategyParams, run_backtest
 from src.data.loader import load_bars
 from src.evaluation import metrics as M
 from src.evaluation import protocol as P
@@ -39,6 +39,25 @@ from src.evaluation.report import generate_markdown_report, generate_plots, save
 from src.evaluation.verdict import decide_verdict, evaluate_criteria, load_acceptance
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def build_backtest_config(cfg_bt: dict) -> BacktestConfig:
+    costs = CostModel(
+        fee_rate=cfg_bt.get("fee_rate", 0.0005),
+        slippage_rate=cfg_bt.get("slippage_rate", 0.0005),
+        funding_multiplier=cfg_bt.get("funding_multiplier", 1.0),
+        fee_rate_maker=cfg_bt.get("fee_rate_maker"),
+        slippage_rate_maker=cfg_bt.get("slippage_rate_maker"),
+        use_bnb_discount=cfg_bt.get("use_bnb_discount", False),
+    )
+    return BacktestConfig(
+        initial_capital=cfg_bt.get("initial_capital", 10_000.0),
+        risk_per_trade=cfg_bt.get("risk_per_trade", 0.01),
+        max_leverage=cfg_bt.get("max_leverage", 3.0),
+        atr_period=cfg_bt.get("atr_period", 14),
+        maintenance_margin_rate=cfg_bt.get("maintenance_margin_rate", 0.005),
+        costs=costs,
+    )
 
 
 def stage_pre(cfg_strategy: dict) -> None:
@@ -59,13 +78,7 @@ def stage_pre(cfg_strategy: dict) -> None:
     ]
     print(f"Evaluando rejilla de {len(grid)} configuraciones en desarrollo: {p_dev}")
 
-    bt_cfg = BacktestConfig(
-        initial_capital=cfg_strategy["backtest"]["initial_capital"],
-        risk_per_trade=cfg_strategy["backtest"]["risk_per_trade"],
-        max_leverage=cfg_strategy["backtest"]["max_leverage"],
-        atr_period=cfg_strategy["backtest"]["atr_period"],
-        maintenance_margin_rate=cfg_strategy["backtest"]["maintenance_margin_rate"],
-    )
+    bt_cfg = build_backtest_config(cfg_strategy["backtest"])
 
     dev_results = {}
     for p in grid:
@@ -128,13 +141,7 @@ def stage_holdout(cfg_strategy: dict, acceptance: dict) -> None:
         bars = load_bars()
         print(f"Todas las barras cargadas. Total: {len(bars)}")
 
-        bt_cfg = BacktestConfig(
-            initial_capital=cfg_strategy["backtest"]["initial_capital"],
-            risk_per_trade=cfg_strategy["backtest"]["risk_per_trade"],
-            max_leverage=cfg_strategy["backtest"]["max_leverage"],
-            atr_period=cfg_strategy["backtest"]["atr_period"],
-            maintenance_margin_rate=cfg_strategy["backtest"]["maintenance_margin_rate"],
-        )
+        bt_cfg = build_backtest_config(cfg_strategy["backtest"])
 
         p_dev = cfg_strategy["periods"]["development"]
         p_val = cfg_strategy["periods"]["validation"]

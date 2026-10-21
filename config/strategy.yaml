@@ -19,8 +19,11 @@ backtest:
   risk_per_trade: 0.01               # fracción del equity arriesgada hasta el stop inicial
   max_leverage: 3.0
   atr_period: 14
-  fee_rate: 0.0005                   # taker Binance USDT-M VIP0 por lado
-  slippage_rate: 0.0005              # 5 bps por lado sobre el precio de referencia
+  fee_rate: 0.0005                   # taker Binance USDT-M VIP0 en salidas
+  slippage_rate: 0.0005              # 5 bps por lado en salidas de mercado
+  fee_rate_maker: 0.0002             # maker en órdenes límite de entrada (Binance VIP0)
+  slippage_rate_maker: 0.0           # sin deslizamiento en órdenes límite
+  use_bnb_discount: true             # 10% de descuento en comisiones con saldo en BNB
   funding_multiplier: 1.0            # funding real; en estrés x2 solo se duplica el pagado
   maintenance_margin_rate: 0.005     # liquidación simulada (margen cruzado)
 
