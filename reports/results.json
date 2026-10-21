@@ -5154,5 +5154,397 @@
         }
       }
     }
+  },
+  "advanced_diagnostics": {
+    "ES": {
+      "r1_deciles_overall_bps": {
+        "1": {
+          "r1_mean": -145.43588948746773,
+          "r13_mean": 4.46972754987629,
+          "count": 220
+        },
+        "2": {
+          "r1_mean": -55.417921999417295,
+          "r13_mean": -0.6852353226539626,
+          "count": 219
+        },
+        "3": {
+          "r1_mean": -27.993130856663836,
+          "r13_mean": -1.0420275529698553,
+          "count": 219
+        },
+        "4": {
+          "r1_mean": -11.273660302515045,
+          "r13_mean": -2.874589476458314,
+          "count": 219
+        },
+        "5": {
+          "r1_mean": 1.1616440487719675,
+          "r13_mean": 0.38616273832866743,
+          "count": 220
+        },
+        "6": {
+          "r1_mean": 12.827307231339399,
+          "r13_mean": 0.8053360570975302,
+          "count": 219
+        },
+        "7": {
+          "r1_mean": 26.148778303392554,
+          "r13_mean": -1.9204448784347583,
+          "count": 219
+        },
+        "8": {
+          "r1_mean": 41.94380056885428,
+          "r13_mean": -1.5965989752347716,
+          "count": 219
+        },
+        "9": {
+          "r1_mean": 65.50125761837579,
+          "r13_mean": -0.8623938626372033,
+          "count": 219
+        },
+        "10": {
+          "r1_mean": 135.96792288770573,
+          "r13_mean": -0.9721661361367944,
+          "count": 220
+        }
+      },
+      "r1_deciles_holdout_bps": {
+        "1": {
+          "r1_mean": -121.45984571308631,
+          "r13_mean": 3.805763538269056,
+          "count": 70
+        },
+        "2": {
+          "r1_mean": -47.50613517216178,
+          "r13_mean": 0.5848872451736308,
+          "count": 70
+        },
+        "3": {
+          "r1_mean": -23.36459728954993,
+          "r13_mean": -1.3581387333539205,
+          "count": 69
+        },
+        "4": {
+          "r1_mean": -9.303707297583586,
+          "r13_mean": 0.2692669974008223,
+          "count": 70
+        },
+        "5": {
+          "r1_mean": 1.8816775093519988,
+          "r13_mean": 1.0118390024930715,
+          "count": 69
+        },
+        "6": {
+          "r1_mean": 12.364531536412356,
+          "r13_mean": 4.949501193051959,
+          "count": 70
+        },
+        "7": {
+          "r1_mean": 24.825582607302657,
+          "r13_mean": -1.2421861090289756,
+          "count": 69
+        },
+        "8": {
+          "r1_mean": 39.801618348267496,
+          "r13_mean": 0.5772449368404009,
+          "count": 70
+        },
+        "9": {
+          "r1_mean": 60.583641635418466,
+          "r13_mean": -0.6674468022378999,
+          "count": 69
+        },
+        "10": {
+          "r1_mean": 120.12186546613292,
+          "r13_mean": -6.01226021304127,
+          "count": 70
+        }
+      },
+      "weekday_net_pnl_holdout_usd": {
+        "H1": {
+          "Monday": -4569.5,
+          "Tuesday": -2688.5,
+          "Wednesday": -914.0,
+          "Thursday": -6327.0,
+          "Friday": -956.5
+        },
+        "H2": {
+          "Monday": 1517.5,
+          "Tuesday": -2959.5,
+          "Wednesday": 4511.0,
+          "Thursday": -18040.0,
+          "Friday": -6819.0
+        },
+        "H3": {
+          "Monday": -446.5,
+          "Tuesday": -1608.5,
+          "Wednesday": 2953.5,
+          "Thursday": -10893.0,
+          "Friday": -3033.5
+        },
+        "H4": {
+          "Monday": -7750.5,
+          "Tuesday": 8782.5,
+          "Wednesday": -2687.5,
+          "Thursday": -5613.0,
+          "Friday": 2638.5
+        },
+        "B1": {
+          "Monday": 11539.0,
+          "Tuesday": -8492.5,
+          "Wednesday": -1339.0,
+          "Thursday": -7302.0,
+          "Friday": -4689.5
+        }
+      },
+      "volatility_terciles_pnl_holdout_usd": {
+        "H1": {
+          "low_vol_pnl_usd": -8883.0,
+          "mid_vol_pnl_usd": -9090.0,
+          "high_vol_pnl_usd": 2517.5
+        },
+        "H2": {
+          "low_vol_pnl_usd": -9900.5,
+          "mid_vol_pnl_usd": -13582.0,
+          "high_vol_pnl_usd": 1692.5
+        },
+        "H3": {
+          "low_vol_pnl_usd": -7616.0,
+          "mid_vol_pnl_usd": -8688.5,
+          "high_vol_pnl_usd": 3276.5
+        },
+        "H4": {
+          "low_vol_pnl_usd": 0.0,
+          "mid_vol_pnl_usd": -7147.5,
+          "high_vol_pnl_usd": 2517.5
+        }
+      },
+      "breakeven_costs_holdout": {
+        "H1": {
+          "gross_pnl_usd": -4037.5,
+          "n_trades": 692,
+          "breakeven_cost_usd_per_trade": -5.834537572254336,
+          "breakeven_slippage_ticks_per_side_at_comm2": -0.39338150289017343
+        },
+        "H2": {
+          "gross_pnl_usd": -10487.5,
+          "n_trades": 685,
+          "breakeven_cost_usd_per_trade": -15.31021897810219,
+          "breakeven_slippage_ticks_per_side_at_comm2": -0.7724087591240877
+        },
+        "H3": {
+          "gross_pnl_usd": -7137.5,
+          "n_trades": 357,
+          "breakeven_cost_usd_per_trade": -19.99299719887955,
+          "breakeven_slippage_ticks_per_side_at_comm2": -0.959719887955182
+        },
+        "H4": {
+          "gross_pnl_usd": -175.0,
+          "n_trades": 270,
+          "breakeven_cost_usd_per_trade": -0.6481481481481481,
+          "breakeven_slippage_ticks_per_side_at_comm2": -0.1859259259259259
+        }
+      },
+      "campbell_thompson_oos_r_squared": {
+        "r13_from_r1": -0.01054374464396246,
+        "r13_from_r12": -0.0073359613046433125
+      }
+    },
+    "NQ": {
+      "r1_deciles_overall_bps": {
+        "1": {
+          "r1_mean": -179.31151976757667,
+          "r13_mean": 2.3278032148075987,
+          "count": 220
+        },
+        "2": {
+          "r1_mean": -81.91721346241215,
+          "r13_mean": 0.11774126739902567,
+          "count": 219
+        },
+        "3": {
+          "r1_mean": -41.01830014982239,
+          "r13_mean": -0.20157120461939204,
+          "count": 219
+        },
+        "4": {
+          "r1_mean": -17.92949199545849,
+          "r13_mean": -1.680577326186652,
+          "count": 219
+        },
+        "5": {
+          "r1_mean": 1.5283951876141353,
+          "r13_mean": -0.2392497852358628,
+          "count": 220
+        },
+        "6": {
+          "r1_mean": 18.635452506397336,
+          "r13_mean": -0.7711190828511951,
+          "count": 219
+        },
+        "7": {
+          "r1_mean": 36.58202606045896,
+          "r13_mean": 0.18478628623467552,
+          "count": 219
+        },
+        "8": {
+          "r1_mean": 60.16694202486507,
+          "r13_mean": -2.7032250617870286,
+          "count": 219
+        },
+        "9": {
+          "r1_mean": 92.53635216464642,
+          "r13_mean": -0.28364341265099635,
+          "count": 219
+        },
+        "10": {
+          "r1_mean": 171.7128322575049,
+          "r13_mean": 1.494134452645093,
+          "count": 220
+        }
+      },
+      "r1_deciles_holdout_bps": {
+        "1": {
+          "r1_mean": -169.21418150355913,
+          "r13_mean": 1.6763827686696688,
+          "count": 70
+        },
+        "2": {
+          "r1_mean": -77.84369668905306,
+          "r13_mean": -0.14189246350532758,
+          "count": 70
+        },
+        "3": {
+          "r1_mean": -39.86148146382401,
+          "r13_mean": 2.820902256374134,
+          "count": 69
+        },
+        "4": {
+          "r1_mean": -19.136046311046034,
+          "r13_mean": -2.7339876060228594,
+          "count": 70
+        },
+        "5": {
+          "r1_mean": -0.17472207873351256,
+          "r13_mean": 2.677703200347662,
+          "count": 69
+        },
+        "6": {
+          "r1_mean": 16.606074185812886,
+          "r13_mean": 4.874695223657904,
+          "count": 70
+        },
+        "7": {
+          "r1_mean": 37.48362849865755,
+          "r13_mean": 1.3229642214310542,
+          "count": 69
+        },
+        "8": {
+          "r1_mean": 61.98672599073343,
+          "r13_mean": -2.004344246660816,
+          "count": 70
+        },
+        "9": {
+          "r1_mean": 92.60119303018988,
+          "r13_mean": -1.9728706695291218,
+          "count": 69
+        },
+        "10": {
+          "r1_mean": 166.9853434805145,
+          "r13_mean": -1.5659939734924142,
+          "count": 70
+        }
+      },
+      "weekday_net_pnl_holdout_usd": {
+        "H1": {
+          "Monday": -9896.0,
+          "Tuesday": -10110.0,
+          "Wednesday": 17835.0,
+          "Thursday": 818.0,
+          "Friday": -1092.0
+        },
+        "H2": {
+          "Monday": 987.0,
+          "Tuesday": -11866.0,
+          "Wednesday": 6946.0,
+          "Thursday": -21982.0,
+          "Friday": -8828.0
+        },
+        "H3": {
+          "Monday": -3820.0,
+          "Tuesday": -10069.0,
+          "Wednesday": 12338.0,
+          "Thursday": -10024.0,
+          "Friday": -4364.0
+        },
+        "H4": {
+          "Monday": -14192.0,
+          "Tuesday": 4820.0,
+          "Wednesday": 2194.0,
+          "Thursday": 4431.0,
+          "Friday": 4804.0
+        },
+        "B1": {
+          "Monday": 15684.0,
+          "Tuesday": -4790.0,
+          "Wednesday": 3156.0,
+          "Thursday": -1902.0,
+          "Friday": -7212.0
+        }
+      },
+      "volatility_terciles_pnl_holdout_usd": {
+        "H1": {
+          "low_vol_pnl_usd": -3419.0,
+          "mid_vol_pnl_usd": 4708.0,
+          "high_vol_pnl_usd": -3734.0
+        },
+        "H2": {
+          "low_vol_pnl_usd": -8261.0,
+          "mid_vol_pnl_usd": -3158.0,
+          "high_vol_pnl_usd": -23324.0
+        },
+        "H3": {
+          "low_vol_pnl_usd": -5140.0,
+          "mid_vol_pnl_usd": 2019.0,
+          "high_vol_pnl_usd": -12818.0
+        },
+        "H4": {
+          "low_vol_pnl_usd": 0.0,
+          "mid_vol_pnl_usd": 5791.0,
+          "high_vol_pnl_usd": -3734.0
+        }
+      },
+      "breakeven_costs_holdout": {
+        "H1": {
+          "gross_pnl_usd": 3810.0,
+          "n_trades": 695,
+          "breakeven_cost_usd_per_trade": 5.482014388489208,
+          "breakeven_slippage_ticks_per_side_at_comm2": 0.14820143884892084
+        },
+        "H2": {
+          "gross_pnl_usd": -28515.0,
+          "n_trades": 692,
+          "breakeven_cost_usd_per_trade": -41.206647398843934,
+          "breakeven_slippage_ticks_per_side_at_comm2": -4.520664739884394
+        },
+        "H3": {
+          "gross_pnl_usd": -12690.0,
+          "n_trades": 361,
+          "breakeven_cost_usd_per_trade": -35.15235457063712,
+          "breakeven_slippage_ticks_per_side_at_comm2": -3.9152354570637122
+        },
+        "H4": {
+          "gross_pnl_usd": 4820.0,
+          "n_trades": 307,
+          "breakeven_cost_usd_per_trade": 15.700325732899023,
+          "breakeven_slippage_ticks_per_side_at_comm2": 1.1700325732899022
+        }
+      },
+      "campbell_thompson_oos_r_squared": {
+        "r13_from_r1": -0.02620463121686689,
+        "r13_from_r12": -0.007240497157878556
+      }
+    }
   }
 }
