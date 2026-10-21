@@ -1,0 +1,11 @@
+{
+  "frozen_at": "2026-10-21T02:22:59.782877+00:00",
+  "commit": "aaa9793ba67865f0588f83a311963851557f5b4f",
+  "acceptance_version": "1.0.0",
+  "hashes": {
+    "config/acceptance.yaml": "7a1022bd4be12de88f4174374c862fcebd4264c0338be457ab0982c15f9f68e5",
+    "config/strategy.yaml": "6059137f61d67e522c00e70e5f1a955c0728986426f0fae2eaf294534a25a2f1",
+    "config/strategy_frozen.yaml": "a82f17c137b2c5541373896efbef65909caa1ef8e284427b1f9cea1d45a8ccb2",
+    "data/manifest.json": "5b53bf035b75d53f9c86811e9ff757109ab6039ffde25b109aae22282033d0d2"
+  }
+}
