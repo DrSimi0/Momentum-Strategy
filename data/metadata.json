@@ -1,0 +1,26 @@
+{
+  "dataset": "GLBX.MDP3",
+  "schema": "ohlcv-1m",
+  "date_range": {
+    "start": "2017-12-15",
+    "end": "2026-10-20"
+  },
+  "costs_usd": {
+    "ES.v.0": 11.368466243148,
+    "NQ.v.0": 11.368918940425,
+    "total": 22.737385183573
+  },
+  "timestamp_utc": "2026-10-21T20:52:41.335917Z",
+  "files": {
+    "ES.v.0": {
+      "path": "data/raw/ES.v.0_ohlcv_1m.parquet",
+      "size_bytes": 47555068,
+      "sha256": "dc36c2418a82d0d63077033282f0b45dd3d49a967abed96f200807a51efe24dd"
+    },
+    "NQ.v.0": {
+      "path": "data/raw/NQ.v.0_ohlcv_1m.parquet",
+      "size_bytes": 52024510,
+      "sha256": "ef81bd0b5060113cec8e8fb1c047ff4f0ffc5a14b649447d2fde4065705fd3e7"
+    }
+  }
+}

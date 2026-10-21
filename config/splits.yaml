@@ -1,10 +1,11 @@
 # Particiones fijadas antes de mirar resultados (fechas de sesión en America/New_York, inclusivas).
+# Ajustadas al periodo 2018–2026 conforme a la decisión D-005 para respetar el límite de costo < USD 25.
 development:
-  start: "2011-01-03"
-  end: "2019-12-31"
+  start: "2018-01-02"
+  end: "2021-12-31"
 validation:
-  start: "2020-01-01"
-  end: "2022-12-31"
+  start: "2022-01-01"
+  end: "2023-12-31"
 final:
-  start: "2023-01-01"
-  end: null   # último día completo disponible en Databento; se fija en data/metadata.json
+  start: "2024-01-01"
+  end: "2026-10-20"

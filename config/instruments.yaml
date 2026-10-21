@@ -5,27 +5,23 @@ instruments:
   ES:
     name: "E-mini S&P 500"
     exchange: "CME Globex"
-    databento_parent: "ES.FUT"
+    databento_symbol: "ES.v.0"
     multiplier_usd_per_point: 50.0
     tick_size_points: 0.25
     tick_value_usd: 12.50
-    outright_regex: "^ES[HMUZ][0-9]{1,2}$"
   NQ:
     name: "E-mini Nasdaq-100"
     exchange: "CME Globex"
-    databento_parent: "NQ.FUT"
+    databento_symbol: "NQ.v.0"
     multiplier_usd_per_point: 20.0
     tick_size_points: 0.25
     tick_value_usd: 5.00
-    outright_regex: "^NQ[HMUZ][0-9]{1,2}$"
 
 databento:
   dataset: "GLBX.MDP3"
   schema_bars: "ohlcv-1m"
-  schema_daily: "ohlcv-1d"        # solo para elegir el contrato por volumen del día anterior
-  stype_parent: "parent"
-  stype_contract: "instrument_id"
-  start: "2011-01-03"
-  daily_lookback_start: "2010-12-01"  # para tener el volumen del día hábil previo al 2011-01-03
-  contract_window_pad_days_before: 7  # incluye la barra 15:59 ET del día hábil previo
+  stype_in: "continuous"
+  start: "2018-01-01"
+  end: "2026-10-20"
+  lookback_start: "2017-12-15"
   max_total_cost_usd: 25.0
