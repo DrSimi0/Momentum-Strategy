@@ -84,3 +84,14 @@ Este documento registra de forma inmutable y transparente todas las decisiones t
   - Se versiona el protocolo a v1.1.0 en `config/acceptance.yaml`.
   - Se limpian artefactos y bloqueo del Holdout anterior de v1.0.0 de forma documentada y justificada.
   - Se re-ejecuta la etapa `pre` (selección en desarrollo), se congelan los nuevos hashes con commit en Git y se re-evalúa el Holdout.
+
+---
+
+### DEC-009: Rechazo Definitivo de la Estrategia v1.1.0, Bloqueo Permanente y Análisis de Potencia
+- **Motivo:** En Holdout v1.1.0, a pesar de reducir los costos en un 41%, la estrategia alcanzó únicamente una retención del 8.04% (eliminatorio < 25%), expectativa negativa ante costos x2 (-0.47 USDT/op), y solo 43 operaciones en 21 meses.
+- **Acciones tomadas:**
+  1. Se actualiza el ciclo de vida en `config/lifecycle.json` marcando la estrategia como `rejected` con veredicto `FAIL`.
+  2. Se bloquea de forma permanente cualquier nueva evaluación del Holdout en `src/evaluation/protocol.py` (lanzando `HoldoutPermanentlyBlocked`). El conjunto de Holdout está consumido y cerrado.
+  3. Se formaliza el módulo `src/evaluation/power_analysis.py` y sus pruebas en `tests/test_power.py`. Se confirma que con $\sigma = 103.4$ USDT y $\mu = 2.83$ USDT se requerirían 5,121 operaciones (~208 años a 24.6 ops/año) para significancia estadística al 95%. Se validan analíticamente las estimaciones de referencia del usuario (~83 USDT, t ~0.22, N ~3,300 ops, >100 años).
+  4. Se crea `src/evaluation/decomposition.py` con pruebas en `tests/test_decomposition.py` para desglosar fricciones por operación y concentración de beneficios.
+  5. Se genera `reports/final_report.md` y `reports/final_report.json` con comando único ejecutable (`python -m src.run_evaluation --stage final`), concluyendo formalmente el post-mortem con la propuesta de una hipótesis alternativa desacoplada (cartera multi-activo con rebalanceo diario y objetivo de volatilidad).

@@ -24,6 +24,10 @@ class HoldoutAlreadyUsed(RuntimeError):
     """El holdout ya fue evaluado una vez."""
 
 
+class HoldoutPermanentlyBlocked(RuntimeError):
+    """La estrategia está en estado rejected en el ciclo de vida y el holdout está consumido permanentemente."""
+
+
 def sha256_file(path: Path) -> str:
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
@@ -80,7 +84,19 @@ def verify_freeze(root: Path) -> dict:
 
 def acquire_holdout_lock(root: Path, info: dict) -> Path:
     """Crea reports/.holdout_used de forma atómica; si ya existe, el holdout ya se usó."""
-    p = Path(root) / LOCK_FILE
+    root = Path(root)
+    lifecycle_file = root / "config" / "lifecycle.json"
+    if lifecycle_file.exists():
+        try:
+            lc = json.loads(lifecycle_file.read_text(encoding="utf-8"))
+            if lc.get("lifecycle_status") == "rejected" or lc.get("holdout_exhausted"):
+                raise HoldoutPermanentlyBlocked(
+                    f"Estrategia rechazada ('{lc.get('lifecycle_status')}'). El holdout está consumido y bloqueado permanentemente."
+                )
+        except json.JSONDecodeError:
+            pass
+
+    p = root / LOCK_FILE
     p.parent.mkdir(parents=True, exist_ok=True)
     try:
         fd = os.open(p, os.O_CREAT | os.O_EXCL | os.O_WRONLY)

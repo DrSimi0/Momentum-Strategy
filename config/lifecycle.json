@@ -1,0 +1,17 @@
+{
+  "strategy_id": "donchian_breakout_chandelier_BTCUSDT_4h",
+  "version": "1.1.0",
+  "lifecycle_status": "rejected",
+  "verdict": "FAIL",
+  "rejection_timestamp": "2026-10-21T02:45:00Z",
+  "rejection_reasons": [
+    "Retención OOS / Desarrollo eliminatoria insuficiente: 8.04% (umbral mínimo eliminatorio >= 25%)",
+    "Expectativa neta negativa bajo prueba de estrés de costos x2: -0.4726 USDT por trade (umbral eliminatorio > 0.0 USDT)",
+    "Muestra estadística insuficiente en Holdout: 43 operaciones en 21 meses (umbral mínimo de prueba >= 50 operaciones)",
+    "Falta de significancia estadística: Deflated Sharpe Ratio 0.3594 (umbral >= 0.95) e IC 95% de expectativa incluye el cero [-24.00, +25.43] USDT"
+  ],
+  "holdout_exhausted": true,
+  "holdout_lock_file": "reports/.holdout_used",
+  "allow_future_holdout_evaluations": false,
+  "decision_reference": "DEC-009"
+}

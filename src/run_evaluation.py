@@ -373,7 +373,7 @@ def stage_holdout(cfg_strategy: dict, acceptance: dict) -> None:
 
 def main():
     parser = argparse.ArgumentParser(description="Evaluación de Rentabilidad")
-    parser.add_argument("--stage", choices=["pre", "freeze", "holdout"], required=True)
+    parser.add_argument("--stage", choices=["pre", "freeze", "holdout", "final"], required=True)
     args = parser.parse_args()
 
     cfg_strategy = yaml.safe_load((ROOT / "config" / "strategy.yaml").read_text(encoding="utf-8"))
@@ -385,6 +385,9 @@ def main():
         stage_freeze()
     elif args.stage == "holdout":
         stage_holdout(cfg_strategy, acceptance)
+    elif args.stage == "final":
+        from src.evaluation.final_report import generate_final_report
+        generate_final_report()
 
 
 if __name__ == "__main__":
