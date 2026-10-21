@@ -6,5 +6,20 @@
   "BTCUSDT_funding.csv": {
     "sha256": "771a6d994a69f61d2cab5599ffe35c26553e43b551b2741a5ec462b2d3513c5f",
     "rows": 7395
+  },
+  "test_sample_15m.parquet": {
+    "file": "test_sample_15m.parquet",
+    "rows": 4815,
+    "sha256": "d2028645522af83be6491c8b6ac368707fe088137e08c4fdaa77015da7db4752",
+    "size_bytes": 234226,
+    "start_time": 1788220800000,
+    "end_time": 1792553400000,
+    "source": {
+      "symbol": "BTC-USDT",
+      "interval": "15m",
+      "start": "2026-09-01 00:00:00+00:00",
+      "end": "2026-10-21 03:30:00+00:00",
+      "download_time_utc": "2026-10-21T03:54:11.777192+00:00"
+    }
   }
 }

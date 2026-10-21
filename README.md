@@ -1,37 +1,47 @@
-# Sistema Multiagente de Investigación y Señales BTC-USDT (BingX, 15m)
-*Versión 2.0 — Proyecto Académico y de Experimentación Cuantitativa Determinista*
+# Sistema Multiagente de Confluencia en 3 Capas — BTC-USDT (BingX, 15m)
+*Versión 3.0 — Proyecto Académico y de Experimentación Cuantitativa Determinista*
 
 ---
 
-## 1. Resumen Ejecutivo y Alcance
+## 1. Resumen de la Estrategia (Prompt v3)
 
-Este repositorio implementa un entorno de investigación cuantitativa, simulación y generación de señales en modo solo-observación para el contrato perpetuo **BTC-USDT de BingX (USDT-M)** en temporalidad de **15 minutos**.
-
-### Límites y Restricciones Operativas (No Negociables)
-- **Cero Ejecución de Órdenes:** El sistema solo emite salidas `LONG / SHORT / NEUTRAL` con parámetros de invalidación y registro de razones. No se ejecutan órdenes de compra ni venta.
-- **Sin Claves Privadas de Trading:** No se requiere ni permite el uso de endpoints de trading ni gestión de capital.
-- **Evaluación Base 1x:** Sin apalancamiento en las métricas base.
-- **Aislamiento Determinista:** Los modelos LLM y agentes nunca aprueban estrategias, calculan métricas ni modifican datos de backtest. Todo cálculo estadístico es determinista y probado contra ejemplos numéricos manuales.
+El sistema implementa una **confluencia jerárquica descendente en tres capas**:
+- **Capa 1 (Macro y Sentimiento):** Filtro direccional Point-in-Time y ventana de abstención de $\pm 60$ minutos en torno a eventos macroeconómicos de 3 estrellas (CPI, FOMC, NFP) y posicionamiento según el índice Fear & Greed.
+- **Capa 2 (Estructura Técnica):** Detección determinista de soportes/resistencias fractales con confirmación retardada ($k=3$), BBWP, MACD z-score, setups de ruptura/rebote con volumen, Stop-Loss prefijado, Take-Profit ($R:R \ge 2.0$), Break-Even al alcanzar $+1.0R$ y horizonte temporal máximo de 15 barras (3.75 horas).
+- **Capa 3 (Microestructura):** Validación de absorción de liquidez en la vela de 15m y registro en segundo plano para datos fuera de muestra futuros.
+- **Regla de Conflicto (Anti-Trampa):** La capa superior prevalece siempre sobre la inferior. Un setup técnico contra-tendencia macro se descarta deterministamente como trampa de mercado (`NEUTRAL`).
 
 ---
 
-## 2. Documentación Metodológica y Primer Entregable
+## 2. Comandos de Reproducibilidad
 
-Todos los componentes de diseño, arquitectura y pre-registro se encuentran formalizados en la carpeta [`docs/`](docs/):
-
-1. **[docs/repo_inspection.md](docs/repo_inspection.md):** Inspección exhaustiva del repositorio. Diagnóstico de componentes reutilizables de la v1 (métricas de riesgo, bootstrap, DSR) y componentes por construir para la v2.
-2. **[docs/bingx_api_notes.md](docs/bingx_api_notes.md):** Especificación técnica de la API swap USDT-M de BingX (símbolo `BTC-USDT`, comisiones maker 0.02% / taker 0.05%, paginación, descarte de vela abierta).
-3. **[docs/hipotesis_informe.md](docs/hipotesis_informe.md):** Catálogo crítico clasificado en **Clase A** (formalizable y backtesteable en 15m), **Clase B** (contexto point-in-time exógeno) y **Clase C** (no falsable / observación), con las 10 correcciones metodológicas de §3.1.
-4. **[docs/decisiones.md](docs/decisiones.md):** Lista formal de decisiones abiertas con opciones, análisis de impacto y recomendación técnica.
-5. **[docs/preregistro.md](docs/preregistro.md):** Protocolo de evaluación científica, hipótesis nula, fórmulas con anualización para 15m ($\sqrt{35,040}$), experimentos A/B/C/D (ablación) y robustez estadística.
-6. **[docs/etapa1_plan.md](docs/etapa1_plan.md):** Plan detallado de la Etapa 1 (módulo de datos, validación temporal y almacenamiento inmutable con hash SHA-256).
-
----
-
-## 3. Estado de la Suite de Pruebas
-
-Los 57 tests unitarios existentes continúan en estado verde:
+### 2.1 Ejecutar Suite Completa de Pruebas Unitarias (75 tests)
 ```bash
 python -m pytest
-# 57 passed in 16.81s
 ```
+
+### 2.2 Descargar Dataset Histórico Verificado desde BingX (Solo Lectura)
+```bash
+python scripts/download_bingx_15m.py --start 2023-01-01 --out data/historical/bingx_btc_usdt_15m.parquet
+```
+
+### 2.3 Ejecutar Evaluación y Reporte de Ablación (V1 vs V2)
+```bash
+python scripts/run_v3_evaluation.py
+```
+*El reporte detallado se genera en [`reports/v3_evaluation_report.md`](reports/v3_evaluation_report.md).*
+
+### 2.4 Ejecutar Monitoreo en Tiempo Real / Paper Trading (Nivel 1 y 2)
+```bash
+python scripts/run_paper_trading.py
+```
+*Registra las señales en [`reports/signals_log.jsonl`](reports/signals_log.jsonl) y mantiene el estado en [`reports/paper_trading_state.json`](reports/paper_trading_state.json). La ejecución real está DESACTIVADA por defecto mediante `SafeNullExecutor`.*
+
+---
+
+## 3. Documentación Metodológica
+
+- [`docs/estrategia.md`](docs/estrategia.md): Especificación matemática y conceptual de la estrategia de confluencia.
+- [`docs/preregistro.md`](docs/preregistro.md): Protocolo de evaluación científica congelado con hash SHA-256 del dataset.
+- [`docs/decisiones.md`](docs/decisiones.md): Registro histórico y justificación técnica de todas las decisiones adoptadas.
+- [`docs/bingx_api_notes.md`](docs/bingx_api_notes.md): Especificación técnica de la API pública USDT-M de BingX.

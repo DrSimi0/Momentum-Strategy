@@ -1,0 +1,11 @@
+[
+  {"timestamp_ms": 1721131200000, "name": "US Retail Sales (Jul)", "impact": "HIGH"},
+  {"timestamp_ms": 1722448800000, "name": "FOMC Rate Decision (Jul 31)", "impact": "HIGH"},
+  {"timestamp_ms": 1722599400000, "name": "US Non-Farm Payrolls (Aug 2)", "impact": "HIGH"},
+  {"timestamp_ms": 1723636200000, "name": "US CPI MoM/YoY (Aug 14)", "impact": "HIGH"},
+  {"timestamp_ms": 1725623400000, "name": "US Non-Farm Payrolls (Sep 6)", "impact": "HIGH"},
+  {"timestamp_ms": 1726055400000, "name": "US CPI MoM/YoY (Sep 11)", "impact": "HIGH"},
+  {"timestamp_ms": 1726682400000, "name": "FOMC Rate Decision -50bps (Sep 18)", "impact": "HIGH"},
+  {"timestamp_ms": 1728042600000, "name": "US Non-Farm Payrolls (Oct 4)", "impact": "HIGH"},
+  {"timestamp_ms": 1728561000000, "name": "US CPI MoM/YoY (Oct 10)", "impact": "HIGH"}
+]
