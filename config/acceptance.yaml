@@ -1,0 +1,35 @@
+# Criterios de aceptación. Valores iniciales convencionales, NO verdades universales.
+# Este archivo se congela (commit + hash SHA-256 en config/freeze.json) ANTES de evaluar el holdout.
+# Cualquier cambio posterior invalida la evaluación del holdout.
+version: "1.0.0"
+out_of_sample_period: holdout          # periodo sobre el que se aplican los criterios "fuera de muestra"
+
+thresholds:
+  min_trades_oos: 50                   # mínimo de operaciones fuera de muestra
+  inconclusive_trades_below: 30        # < 30 operaciones => INCONCLUSIVE automático
+  expectancy_net_oos_gt: 0.0           # expectativa neta por operación (USDT) > 0
+  expectancy_ci95_lower_min_r: -0.05   # cota inferior IC95% de la expectativa (en R) "no muy por debajo de 0"
+  profit_factor_oos_min: 1.3
+  sharpe_oos_min: 0.8
+  deflated_sharpe_min: 0.95
+  max_drawdown_oos_max: 0.30
+  max_dd_duration_days_max: 180
+  retention_min: 0.50                  # rentabilidad anualizada fuera de muestra / desarrollo
+  cost_stress_factor: 2.0
+  cost_stress_expectancy_gt: 0.0       # con costos x2 la expectativa neta sigue > 0
+  walk_forward_positive_frac_min: 0.60
+  top5pct_share_max: 0.60              # el 5% mejor de operaciones no explica > 60% de la ganancia neta
+  beat_buy_hold_risk_adjusted: true    # Sharpe o Calmar > buy & hold
+  beat_random_no_ci_overlap: true      # IC95% del Sharpe de la estrategia por encima del IC95% aleatorio
+  max_liquidations: 0
+
+eliminatory:                           # incumplir cualquiera => FAIL
+  expectancy_net_oos_le: 0.0
+  liquidations_gt: 0
+  cost_stress_expectancy_le: 0.0
+  retention_below: 0.25
+
+inconclusive_triggers:                 # sin fallo eliminatorio => INCONCLUSIVE
+  - insufficient_trades                # operaciones < min_trades_oos
+  - ci_includes_zero                   # IC95% de la expectativa incluye 0
+  - deflated_sharpe_below_min

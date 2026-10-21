@@ -1,0 +1,23 @@
+# Python / Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Data processed raw files (large files)
+# Keep manifest.json committed!
+data/processed/*.csv
+
+# Reports locks and generated artifacts can be tracked or ignored
+reports/.holdout_used
+reports/*.png
+reports/*.json
+reports/*.md
+
+# Environment
+.venv/
+venv/
+ENV/
+.idea/
+.vscode/

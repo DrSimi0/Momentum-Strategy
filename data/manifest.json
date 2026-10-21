@@ -1,0 +1,10 @@
+{
+  "BTCUSDT_4h.csv": {
+    "sha256": "c4de10d3eb6f6f6ea0295cdb2578c54371ff2426ba9193323ff71f9056812133",
+    "rows": 14790
+  },
+  "BTCUSDT_funding.csv": {
+    "sha256": "771a6d994a69f61d2cab5599ffe35c26553e43b551b2741a5ec462b2d3513c5f",
+    "rows": 7395
+  }
+}

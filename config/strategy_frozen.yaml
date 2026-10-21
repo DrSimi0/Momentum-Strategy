@@ -1,0 +1,17 @@
+selected_params:
+  channel_n: 100
+  atr_mult: 4.0
+  key: N100_k4
+selection_metric: sharpe
+dev_sharpe: 1.1691374483576211
+n_grid_candidates: 9
+grid:
+- N20_k2
+- N20_k3
+- N20_k4
+- N50_k2
+- N50_k3
+- N50_k4
+- N100_k2
+- N100_k3
+- N100_k4

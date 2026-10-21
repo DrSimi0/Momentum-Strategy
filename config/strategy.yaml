@@ -1,0 +1,47 @@
+# Diseño de la estrategia y del protocolo, fijado ANTES de ver resultados.
+# Ver DECISIONS.md para la justificación de cada valor.
+data:
+  symbol: BTCUSDT
+  interval: 4h
+  download_start: "2020-01"          # primer mes disponible en data.binance.vision (ene-feb = calentamiento)
+  download_end_month: "2026-09"      # último mes completo disponible
+  data_end_exclusive: "2026-10-01"
+
+periods:                              # [inicio, fin) en UTC
+  development: ["2020-03-01", "2023-07-01"]
+  validation:  ["2023-07-01", "2025-01-01"]
+  holdout:     ["2025-01-01", "2026-10-01"]
+
+backtest:
+  initial_capital: 10000.0           # USDT
+  warmup_bars: 300                   # barras previas al periodo, solo para indicadores
+  bars_per_day: 6
+  risk_per_trade: 0.01               # fracción del equity arriesgada hasta el stop inicial
+  max_leverage: 3.0
+  atr_period: 14
+  fee_rate: 0.0005                   # taker Binance USDT-M VIP0 por lado
+  slippage_rate: 0.0005              # 5 bps por lado sobre el precio de referencia
+  funding_multiplier: 1.0            # funding real; en estrés x2 solo se duplica el pagado
+  maintenance_margin_rate: 0.005     # liquidación simulada (margen cruzado)
+
+strategy:
+  name: donchian_breakout_chandelier
+  grid:                              # 9 configuraciones candidatas
+    channel_n: [20, 50, 100]
+    atr_mult: [2.0, 3.0, 4.0]
+  selection_metric: sharpe           # Sharpe neto diario anualizado en DESARROLLO
+
+evaluation:
+  seed: 42
+  bootstrap_reps: 5000
+  monte_carlo_reps: 5000
+  random_baseline_reps: 500
+  sensitivity_factors: [0.8, 1.0, 1.2]
+  regime:                            # regla fija, solo usa datos pasados
+    lookback_days: 60
+    bull_threshold: 0.10
+    bear_threshold: -0.10
+  walk_forward:
+    train_months: 24
+    test_months: 6
+    first_test_start: "2022-01-01"
