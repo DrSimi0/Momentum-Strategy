@@ -41,3 +41,8 @@ Formato: decisión · alternativas · motivo. Ordenadas por fecha de adopción.
 - **Decisión:** Se congelan formalmente todas las hipótesis, particiones temporales (Desarrollo: 2018–2021, Validación: 2022–2023, Final: 2024–2026), modelo de costos de transacción y criterios de aceptación (A1 a A6) en `docs/PREREGISTRO.md` bajo el tag de git inmutable `preregistro-congelado`.
 - **Alternativas:** Ajustar parámetros o descartar hipótesis tras observar el periodo de desarrollo/validación antes de ir a holdout.
 - **Motivo:** Garantizar máxima honestidad estadística y eliminar por diseño el sesgo de selección y sobreajuste p-hacking.
+
+## D-008 · Veredicto final del Holdout: Rechazo unánime de las hipótesis de momentum intradía (F6/F7)
+- **Decisión:** Se declara formalmente el veredicto **REJECTED** para las 8 hipótesis primarias evaluadas en los futuros ES y NQ. Se genera el candado `reports/FINAL_RUN.lock`, se guarda el desglose cuantitativo reproducible en `reports/results.json`, y se publica el informe en `reports/informe_momentum_intradia.md`.
+- **Alternativas:** Re-optimizar umbrales, filtrar por subregímenes o alterar reglas tras ver los resultados del holdout.
+- **Motivo:** En investigación cuantitativa rigurosa, un resultado negativo fuera de muestra es un resultado definitivo. Modificar parámetros tras consumir el holdout violaría los principios científicos del pre-registro y generaría resultados espurios.
