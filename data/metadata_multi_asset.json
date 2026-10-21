@@ -1,0 +1,137 @@
+{
+  "timestamp_utc": "2026-10-21T21:37:45.204463+00:00",
+  "assets": {
+    "ES": {
+      "source": "Databento GLBX.MDP3 (repo cache)",
+      "timeframes": {
+        "15m": {
+          "path": "data/processed/ES_15m.parquet",
+          "bars_count": 58362,
+          "start": "2017-12-15 14:30:00+00:00",
+          "end": "2026-10-19 19:45:00+00:00",
+          "sha256": "a5d204f73b45314aa627c64c36e6cfc1c5cb84d808694a3d618a5de04795e1d7"
+        },
+        "1h": {
+          "path": "data/processed/ES_1h.parquet",
+          "bars_count": 15725,
+          "start": "2017-12-15 14:30:00+00:00",
+          "end": "2026-10-19 19:30:00+00:00",
+          "sha256": "0e4d8edc14b6adff9f48beef704d7c1bf007e5e9b651bdc86988df3ba10477f0"
+        },
+        "4h": {
+          "path": "data/processed/ES_4h.parquet",
+          "bars_count": 14147,
+          "start": "2017-12-15 00:00:00+00:00",
+          "end": "2026-10-19 20:00:00+00:00",
+          "sha256": "ef6cccc5b1d0bb15819328e0cb18c817a380722472977cd23c52948deba1354a"
+        },
+        "1d": {
+          "path": "data/processed/ES_1d.parquet",
+          "bars_count": 2279,
+          "start": "2017-12-15 05:00:00+00:00",
+          "end": "2026-10-19 04:00:00+00:00",
+          "sha256": "cb0c767e0a80fa76ef0da516dc6741c2360d51fa77b31cdf10c38e030778d9a0"
+        }
+      }
+    },
+    "NQ": {
+      "source": "Databento GLBX.MDP3 (repo cache)",
+      "timeframes": {
+        "15m": {
+          "path": "data/processed/NQ_15m.parquet",
+          "bars_count": 58361,
+          "start": "2017-12-15 14:30:00+00:00",
+          "end": "2026-10-19 19:45:00+00:00",
+          "sha256": "495cab3d694190b76cc32d71a03e7241d7c63a6209f2afd8a90f145ab9301600"
+        },
+        "1h": {
+          "path": "data/processed/NQ_1h.parquet",
+          "bars_count": 15725,
+          "start": "2017-12-15 14:30:00+00:00",
+          "end": "2026-10-19 19:30:00+00:00",
+          "sha256": "259e7826c7af69b06291474152d14a5c37204f16533bccf53b7f91132764e0ed"
+        },
+        "4h": {
+          "path": "data/processed/NQ_4h.parquet",
+          "bars_count": 14147,
+          "start": "2017-12-15 00:00:00+00:00",
+          "end": "2026-10-19 20:00:00+00:00",
+          "sha256": "d9e9e4e095b9c993d9416dee31173817a1343ccba378ede0918bae4eea55cd1f"
+        },
+        "1d": {
+          "path": "data/processed/NQ_1d.parquet",
+          "bars_count": 2279,
+          "start": "2017-12-15 05:00:00+00:00",
+          "end": "2026-10-19 04:00:00+00:00",
+          "sha256": "697d57a21b7276af88bcfbe189bdbaff454b845a1911c737bfef389ce31936e6"
+        }
+      }
+    },
+    "BTC-USDT": {
+      "source": "BingX Public Perpetual Swap API",
+      "timeframes": {
+        "15m": {
+          "path": "data/processed/BTC_USDT_15m.parquet",
+          "bars_count": 9630,
+          "start": "2026-07-13 14:00:00+00:00",
+          "end": "2026-10-21 21:15:00+00:00",
+          "sha256": "80c794d5e23dec72248950976619038293a16aea056ca6eeacb41f88a2296c74"
+        },
+        "1h": {
+          "path": "data/processed/BTC_USDT_1h.parquet",
+          "bars_count": 21779,
+          "start": "2024-04-27 10:00:00+00:00",
+          "end": "2026-10-21 20:00:00+00:00",
+          "sha256": "d20a8f11de86cb160e5382047481d8f413ae4ad127422576ea7ae0e15b8806f4"
+        },
+        "4h": {
+          "path": "data/processed/BTC_USDT_4h.parquet",
+          "bars_count": 9001,
+          "start": "2022-09-12 16:00:00+00:00",
+          "end": "2026-10-21 16:00:00+00:00",
+          "sha256": "2c9fad1389cb90cacfb328438a848769fcffd4eeb7193e0e61c7a9c13d2af823"
+        },
+        "1d": {
+          "path": "data/processed/BTC_USDT_1d.parquet",
+          "bars_count": 1968,
+          "start": "2021-06-01 00:00:00+00:00",
+          "end": "2026-10-20 00:00:00+00:00",
+          "sha256": "79e00205ed9f6f5a318e105ccc6d7bf64cc8ee72549e1d867e56234717bc96e4"
+        }
+      }
+    },
+    "ETH-USDT": {
+      "source": "BingX Public Perpetual Swap API",
+      "timeframes": {
+        "15m": {
+          "path": "data/processed/ETH_USDT_15m.parquet",
+          "bars_count": 9630,
+          "start": "2026-07-13 14:00:00+00:00",
+          "end": "2026-10-21 21:15:00+00:00",
+          "sha256": "b4f6285efcc03b890c4d1dc53c20dd60a962d05cf8698b4707dc59089a7e373c"
+        },
+        "1h": {
+          "path": "data/processed/ETH_USDT_1h.parquet",
+          "bars_count": 21779,
+          "start": "2024-04-27 10:00:00+00:00",
+          "end": "2026-10-21 20:00:00+00:00",
+          "sha256": "e67c84df38a42e97447ac4fb7d90e7b88566bbe7118e054e74ebe33daf53d2db"
+        },
+        "4h": {
+          "path": "data/processed/ETH_USDT_4h.parquet",
+          "bars_count": 8999,
+          "start": "2022-09-12 16:00:00+00:00",
+          "end": "2026-10-21 16:00:00+00:00",
+          "sha256": "446441a082d5863f22e0135d42bf63d10d1de0ca447200a467b302de90e02ef6"
+        },
+        "1d": {
+          "path": "data/processed/ETH_USDT_1d.parquet",
+          "bars_count": 1965,
+          "start": "2021-06-01 00:00:00+00:00",
+          "end": "2026-10-20 00:00:00+00:00",
+          "sha256": "7c8aa44a11f5cb308019a4bcaae26da1e323cd90ac801acaeef16846c4a68005"
+        }
+      }
+    }
+  }
+}

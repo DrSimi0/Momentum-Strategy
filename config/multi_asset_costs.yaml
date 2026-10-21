@@ -1,0 +1,65 @@
+# Configuración de costos, especificaciones y calendarios para ES, NQ, BTC y ETH.
+
+assets:
+  ES:
+    name: "E-mini S&P 500 Futures"
+    family: "indices"
+    exchange: "CME Globex"
+    type: "futures"
+    raw_data_file: "data/raw/ES.v.0_ohlcv_1m.parquet"
+    multiplier_usd_per_point: 50.0
+    tick_size_points: 0.25
+    tick_value_usd: 12.50
+    commission_usd_per_side: 2.00
+    slippage_ticks_per_side: 0.5
+    annualization_days: 252
+    timezone: "America/New_York"
+    session_rth_start: "09:30"
+    session_rth_end: "16:00"
+    is_24_7: false
+
+  NQ:
+    name: "E-mini Nasdaq-100 Futures"
+    family: "indices"
+    exchange: "CME Globex"
+    type: "futures"
+    raw_data_file: "data/raw/NQ.v.0_ohlcv_1m.parquet"
+    multiplier_usd_per_point: 20.0
+    tick_size_points: 0.25
+    tick_value_usd: 5.00
+    commission_usd_per_side: 2.00
+    slippage_ticks_per_side: 0.5
+    annualization_days: 252
+    timezone: "America/New_York"
+    session_rth_start: "09:30"
+    session_rth_end: "16:00"
+    is_24_7: false
+
+  BTC-USDT:
+    name: "Bitcoin Perpetual Swap"
+    family: "crypto"
+    exchange: "BingX"
+    type: "perpetual_swap"
+    commission_pct_per_side: 0.0005    # 0.05% taker
+    slippage_pct_per_side: 0.0002      # 0.02%
+    default_funding_rate_8h: 0.0001    # 0.01% por intervalo de 8h (tasa estándar neutral)
+    annualization_days: 365
+    timezone: "UTC"
+    is_24_7: true
+
+  ETH-USDT:
+    name: "Ethereum Perpetual Swap"
+    family: "crypto"
+    exchange: "BingX"
+    type: "perpetual_swap"
+    commission_pct_per_side: 0.0005    # 0.05% taker
+    slippage_pct_per_side: 0.0003      # 0.03%
+    default_funding_rate_8h: 0.0001    # 0.01% por intervalo de 8h
+    annualization_days: 365
+    timezone: "UTC"
+    is_24_7: true
+
+splits:
+  train_pct: 0.60
+  val_pct: 0.20
+  test_pct: 0.20

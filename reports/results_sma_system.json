@@ -1,0 +1,877 @@
+{
+  "metadata": {
+    "title": "Estudio Multiactivo de Confluencia SMA + MACD + RSI",
+    "protocol": "60% Train, 20% Val, 20% Test Final",
+    "assets_evaluated": [
+      "ES",
+      "NQ",
+      "BTC-USDT",
+      "ETH-USDT"
+    ],
+    "timeframes": [
+      "1h",
+      "4h"
+    ]
+  },
+  "experiments": {
+    "ES_1h": {
+      "asset": "ES",
+      "timeframe": "1h",
+      "train_summary": {
+        "max_sharpe": 3.947270510639881,
+        "mean_sharpe": 0.5054336177983686,
+        "positive_sharpe_fraction": 0.7285714285714285
+      },
+      "finalist_evaluation": {
+        "params": {
+          "num_smas": 3,
+          "fast_sma": 10,
+          "mid_sma": 100,
+          "slow_sma": 200,
+          "macd_fast": 12,
+          "macd_slow": 26,
+          "macd_signal": 9,
+          "rsi_period": 7,
+          "atr_k": 1.5,
+          "tp_m": 1.5,
+          "use_macd": true,
+          "use_rsi": true,
+          "close_at_session_end": false
+        },
+        "validation": {
+          "strategy_sharpe": 4.443123150162917,
+          "strategy_pnl_usd": 13457.450291576588,
+          "solo_sma_sharpe": 0.2949516700211698,
+          "buy_and_hold_sharpe": 0.6268120464401836
+        },
+        "walk_forward": {
+          "combined_oos_sharpe": -1.9712049121016846,
+          "windows": [
+            {
+              "window": 1,
+              "train_start": "2017-12-15 14:30:00+00:00",
+              "test_end": "2019-09-24 17:30:00+00:00",
+              "train_sharpe": 3.99399420471391,
+              "test_sharpe": 5.741475665030587,
+              "test_net_pnl": 4132.306478381786,
+              "test_win_rate": 0.5,
+              "test_trades": 8
+            },
+            {
+              "window": 2,
+              "train_start": "2019-09-24 18:30:00+00:00",
+              "test_end": "2021-06-30 19:30:00+00:00",
+              "train_sharpe": 5.697229836240449,
+              "test_sharpe": 0.20059437686596163,
+              "test_net_pnl": 111.23561560904636,
+              "test_win_rate": 0.375,
+              "test_trades": 8
+            },
+            {
+              "window": 3,
+              "train_start": "2021-07-01 13:30:00+00:00",
+              "test_end": "2023-04-05 14:30:00+00:00",
+              "train_sharpe": 2.601548220430791,
+              "test_sharpe": -5.680993177227285,
+              "test_net_pnl": -3313.377460907069,
+              "test_win_rate": 0.25,
+              "test_trades": 4
+            },
+            {
+              "window": 4,
+              "train_start": "2023-04-05 15:30:00+00:00",
+              "test_end": "2025-01-13 19:30:00+00:00",
+              "train_sharpe": 4.411625110527832,
+              "test_sharpe": -2.33938651783924,
+              "test_net_pnl": -959.4499060731887,
+              "test_win_rate": 0.3333333333333333,
+              "test_trades": 3
+            },
+            {
+              "window": 5,
+              "train_start": "2025-01-13 20:30:00+00:00",
+              "test_end": "2026-10-19 19:30:00+00:00",
+              "train_sharpe": 2.8032323607356333,
+              "test_sharpe": -36.775051323342915,
+              "test_net_pnl": -15308.228645698613,
+              "test_win_rate": 0.0,
+              "test_trades": 6
+            }
+          ]
+        },
+        "test_final": {
+          "trades": 31,
+          "net_pnl_usd": -1156.0580221235105,
+          "sharpe": 0.45143849209016534,
+          "win_rate": 0.3870967741935484,
+          "profit_factor": 0.9741052017926908,
+          "max_drawdown": 21549.34414108863,
+          "avg_expectancy_usd": -37.292194262048724,
+          "solo_sma_sharpe": -0.9347304174094923,
+          "buy_and_hold_sharpe": 0.3911988332783129,
+          "buy_and_hold_pnl_usd": 93658.5,
+          "deflated_sharpe_ratio": 8.987641475497174e-06,
+          "total_trials_penalized": 15120
+        }
+      }
+    },
+    "NQ_1h": {
+      "asset": "NQ",
+      "timeframe": "1h",
+      "train_summary": {
+        "max_sharpe": 4.255351945702797,
+        "mean_sharpe": 0.638674576739957,
+        "positive_sharpe_fraction": 0.78994708994709
+      },
+      "finalist_evaluation": {
+        "params": {
+          "num_smas": 3,
+          "fast_sma": 30,
+          "mid_sma": 50,
+          "slow_sma": 150,
+          "macd_fast": 8,
+          "macd_slow": 17,
+          "macd_signal": 9,
+          "rsi_period": 7,
+          "atr_k": 1.5,
+          "tp_m": 2.0,
+          "use_macd": true,
+          "use_rsi": true,
+          "close_at_session_end": false
+        },
+        "validation": {
+          "strategy_sharpe": 3.1319141137508733,
+          "strategy_pnl_usd": 40962.25511519205,
+          "solo_sma_sharpe": -0.02581976114826664,
+          "buy_and_hold_sharpe": 0.6195671383297074
+        },
+        "walk_forward": {
+          "combined_oos_sharpe": 0.1727468064956814,
+          "windows": [
+            {
+              "window": 1,
+              "train_start": "2017-12-15 14:30:00+00:00",
+              "test_end": "2019-09-24 17:30:00+00:00",
+              "train_sharpe": 1.8029779668854267,
+              "test_sharpe": 2.245945530221341,
+              "test_net_pnl": 3057.1136822359404,
+              "test_win_rate": 0.4,
+              "test_trades": 15
+            },
+            {
+              "window": 2,
+              "train_start": "2019-09-24 18:30:00+00:00",
+              "test_end": "2021-06-30 19:30:00+00:00",
+              "train_sharpe": 8.539091546398275,
+              "test_sharpe": -0.30004909569596366,
+              "test_net_pnl": -1331.9858398875876,
+              "test_win_rate": 0.25,
+              "test_trades": 16
+            },
+            {
+              "window": 3,
+              "train_start": "2021-07-01 13:30:00+00:00",
+              "test_end": "2023-04-05 14:30:00+00:00",
+              "train_sharpe": 2.3128476485107745,
+              "test_sharpe": -6.6060526577091725,
+              "test_net_pnl": -17697.249548671833,
+              "test_win_rate": 0.25,
+              "test_trades": 12
+            },
+            {
+              "window": 4,
+              "train_start": "2023-04-05 15:30:00+00:00",
+              "test_end": "2025-01-13 19:30:00+00:00",
+              "train_sharpe": 1.7030869572051919,
+              "test_sharpe": 5.6861381193496925,
+              "test_net_pnl": 26334.130688310062,
+              "test_win_rate": 0.5833333333333334,
+              "test_trades": 12
+            },
+            {
+              "window": 5,
+              "train_start": "2025-01-13 20:30:00+00:00",
+              "test_end": "2026-10-19 19:30:00+00:00",
+              "train_sharpe": -1.4123218276746055,
+              "test_sharpe": 1.5605880994411347,
+              "test_net_pnl": 3718.021769675048,
+              "test_win_rate": 0.3333333333333333,
+              "test_trades": 6
+            }
+          ]
+        },
+        "test_final": {
+          "trades": 43,
+          "net_pnl_usd": -15450.027744882202,
+          "sharpe": -0.9255518338395119,
+          "win_rate": 0.37209302325581395,
+          "profit_factor": 0.8919930970944192,
+          "max_drawdown": 48023.62979231923,
+          "avg_expectancy_usd": -359.302970811214,
+          "solo_sma_sharpe": -1.3050419530222648,
+          "buy_and_hold_sharpe": 0.3883876469554228,
+          "buy_and_hold_pnl_usd": 176756.0,
+          "deflated_sharpe_ratio": 6.503023046077883e-07,
+          "total_trials_penalized": 15120
+        }
+      }
+    },
+    "BTC-USDT_1h": {
+      "asset": "BTC-USDT",
+      "timeframe": "1h",
+      "train_summary": {
+        "max_sharpe": 2.1282388501211997,
+        "mean_sharpe": -1.3242714331761922,
+        "positive_sharpe_fraction": 0.08253968253968254
+      },
+      "finalist_evaluation": {
+        "params": {
+          "num_smas": 3,
+          "fast_sma": 30,
+          "mid_sma": 50,
+          "slow_sma": 200,
+          "macd_fast": 12,
+          "macd_slow": 26,
+          "macd_signal": 9,
+          "rsi_period": 7,
+          "atr_k": 3.0,
+          "tp_m": 1.5,
+          "use_macd": true,
+          "use_rsi": true,
+          "close_at_session_end": false
+        },
+        "validation": {
+          "strategy_sharpe": 5.236057408260374,
+          "strategy_pnl_usd": 2755.702379890855,
+          "solo_sma_sharpe": 0.9774520528316364,
+          "buy_and_hold_sharpe": -0.23969328866177111
+        },
+        "walk_forward": {
+          "combined_oos_sharpe": 1.1911483017824238,
+          "windows": [
+            {
+              "window": 1,
+              "train_start": "2024-04-27 10:00:00+00:00",
+              "test_end": "2024-10-25 20:00:00+00:00",
+              "train_sharpe": 2.0354294773658355,
+              "test_sharpe": 6.647414114626451,
+              "test_net_pnl": 831.7089627439693,
+              "test_win_rate": 0.6666666666666666,
+              "test_trades": 9
+            },
+            {
+              "window": 2,
+              "train_start": "2024-10-25 22:00:00+00:00",
+              "test_end": "2025-04-25 08:00:00+00:00",
+              "train_sharpe": 2.842226289975828,
+              "test_sharpe": 3.724200213186545,
+              "test_net_pnl": 644.6392982554187,
+              "test_win_rate": 0.5555555555555556,
+              "test_trades": 9
+            },
+            {
+              "window": 3,
+              "train_start": "2025-04-25 10:00:00+00:00",
+              "test_end": "2025-10-23 20:00:00+00:00",
+              "train_sharpe": -12.075203136909058,
+              "test_sharpe": -4.951149726376173,
+              "test_net_pnl": -279.19427406992895,
+              "test_win_rate": 0.16666666666666666,
+              "test_trades": 6
+            },
+            {
+              "window": 4,
+              "train_start": "2025-10-23 22:00:00+00:00",
+              "test_end": "2026-04-23 08:00:00+00:00",
+              "train_sharpe": 2.471511628472982,
+              "test_sharpe": 7.55576786502404,
+              "test_net_pnl": 909.5148409786107,
+              "test_win_rate": 0.625,
+              "test_trades": 8
+            },
+            {
+              "window": 5,
+              "train_start": "2026-04-23 10:00:00+00:00",
+              "test_end": "2026-10-21 20:00:00+00:00",
+              "train_sharpe": -4.403060465671337,
+              "test_sharpe": -10.543110537639878,
+              "test_net_pnl": -1349.3586470963353,
+              "test_win_rate": 0.21428571428571427,
+              "test_trades": 14
+            }
+          ]
+        },
+        "test_final": {
+          "trades": 34,
+          "net_pnl_usd": -1987.2279016218204,
+          "sharpe": -5.64965619968886,
+          "win_rate": 0.29411764705882354,
+          "profit_factor": 0.5397474018460691,
+          "max_drawdown": 2108.02537406398,
+          "avg_expectancy_usd": -58.447879459465305,
+          "solo_sma_sharpe": 0.7448756686625139,
+          "buy_and_hold_sharpe": 0.13017336536552904,
+          "buy_and_hold_pnl_usd": 836.2338793723396,
+          "deflated_sharpe_ratio": 8.700692694606006e-10,
+          "total_trials_penalized": 15120
+        }
+      }
+    },
+    "ETH-USDT_1h": {
+      "asset": "ETH-USDT",
+      "timeframe": "1h",
+      "train_summary": {
+        "max_sharpe": 2.0438251579685947,
+        "mean_sharpe": -1.500757574890311,
+        "positive_sharpe_fraction": 0.04656084656084656
+      },
+      "finalist_evaluation": {
+        "params": {
+          "num_smas": 3,
+          "fast_sma": 10,
+          "mid_sma": 100,
+          "slow_sma": 200,
+          "macd_fast": 16,
+          "macd_slow": 35,
+          "macd_signal": 9,
+          "rsi_period": 7,
+          "atr_k": 3.0,
+          "tp_m": 1.5,
+          "use_macd": true,
+          "use_rsi": true,
+          "close_at_session_end": false
+        },
+        "validation": {
+          "strategy_sharpe": 7.4485401462821486,
+          "strategy_pnl_usd": 4012.5470352338143,
+          "solo_sma_sharpe": 0.5019986082304599,
+          "buy_and_hold_sharpe": -0.2342258493880283
+        },
+        "walk_forward": {
+          "combined_oos_sharpe": 4.204386475805396,
+          "windows": [
+            {
+              "window": 1,
+              "train_start": "2024-04-27 10:00:00+00:00",
+              "test_end": "2024-10-25 20:00:00+00:00",
+              "train_sharpe": -1.9347797440800154,
+              "test_sharpe": 11.722802162060226,
+              "test_net_pnl": 1158.9364724454142,
+              "test_win_rate": 0.6666666666666666,
+              "test_trades": 6
+            },
+            {
+              "window": 2,
+              "train_start": "2024-10-25 22:00:00+00:00",
+              "test_end": "2025-04-25 08:00:00+00:00",
+              "train_sharpe": -7.027348751506948,
+              "test_sharpe": -0.014123187650901991,
+              "test_net_pnl": -0.9649923569219823,
+              "test_win_rate": 0.5,
+              "test_trades": 4
+            },
+            {
+              "window": 3,
+              "train_start": "2025-04-25 10:00:00+00:00",
+              "test_end": "2025-10-23 20:00:00+00:00",
+              "train_sharpe": 4.523140935541173,
+              "test_sharpe": -1.8743076911085466,
+              "test_net_pnl": -171.51845476980105,
+              "test_win_rate": 0.3333333333333333,
+              "test_trades": 6
+            },
+            {
+              "window": 4,
+              "train_start": "2025-10-23 22:00:00+00:00",
+              "test_end": "2026-04-23 08:00:00+00:00",
+              "train_sharpe": 4.128805736823682,
+              "test_sharpe": 19.766207212152686,
+              "test_net_pnl": 1722.679984949304,
+              "test_win_rate": 0.8571428571428571,
+              "test_trades": 7
+            },
+            {
+              "window": 5,
+              "train_start": "2026-04-23 10:00:00+00:00",
+              "test_end": "2026-10-21 20:00:00+00:00",
+              "train_sharpe": 0.22879448439644906,
+              "test_sharpe": -4.487017901191139,
+              "test_net_pnl": -588.720065513394,
+              "test_win_rate": 0.2727272727272727,
+              "test_trades": 11
+            }
+          ]
+        },
+        "test_final": {
+          "trades": 30,
+          "net_pnl_usd": -788.781522693417,
+          "sharpe": -1.9465183888283222,
+          "win_rate": 0.36666666666666664,
+          "profit_factor": 0.8055526463776433,
+          "max_drawdown": 1895.9625474924883,
+          "avg_expectancy_usd": -26.2927174231139,
+          "solo_sma_sharpe": 1.8790800981599405,
+          "buy_and_hold_sharpe": 0.10284807917513045,
+          "buy_and_hold_pnl_usd": 617.533215253621,
+          "deflated_sharpe_ratio": 3.202525767765767e-07,
+          "total_trials_penalized": 15120
+        }
+      }
+    },
+    "ES_4h": {
+      "asset": "ES",
+      "timeframe": "4h",
+      "train_summary": {
+        "max_sharpe": 2.7824343826797326,
+        "mean_sharpe": 0.2636493927950039,
+        "positive_sharpe_fraction": 0.6402116402116402
+      },
+      "finalist_evaluation": {
+        "params": {
+          "num_smas": 3,
+          "fast_sma": 30,
+          "mid_sma": 100,
+          "slow_sma": 200,
+          "macd_fast": 16,
+          "macd_slow": 35,
+          "macd_signal": 9,
+          "rsi_period": 14,
+          "atr_k": 3.0,
+          "tp_m": 2.0,
+          "use_macd": true,
+          "use_rsi": true,
+          "close_at_session_end": false
+        },
+        "validation": {
+          "strategy_sharpe": 3.8251131051960514,
+          "strategy_pnl_usd": 25200.16179528083,
+          "solo_sma_sharpe": -0.3827689780766556,
+          "buy_and_hold_sharpe": 0.6615035723597891
+        },
+        "walk_forward": {
+          "combined_oos_sharpe": -2.056769851615054,
+          "windows": [
+            {
+              "window": 1,
+              "train_start": "2017-12-15 00:00:00+00:00",
+              "test_end": "2019-09-24 00:00:00+00:00",
+              "train_sharpe": -0.7298136426479254,
+              "test_sharpe": -0.5159326376945678,
+              "test_net_pnl": -899.2612396139775,
+              "test_win_rate": 0.2857142857142857,
+              "test_trades": 7
+            },
+            {
+              "window": 2,
+              "train_start": "2019-09-24 04:00:00+00:00",
+              "test_end": "2021-07-01 00:00:00+00:00",
+              "train_sharpe": 5.144276199495313,
+              "test_sharpe": -0.2359063126138497,
+              "test_net_pnl": -719.9461585056415,
+              "test_win_rate": 0.25,
+              "test_trades": 4
+            },
+            {
+              "window": 3,
+              "train_start": "2021-07-01 08:00:00+00:00",
+              "test_end": "2023-04-06 16:00:00+00:00",
+              "train_sharpe": -0.04716330067222953,
+              "test_sharpe": -2.9072165323325234,
+              "test_net_pnl": -6702.01003500413,
+              "test_win_rate": 0.2857142857142857,
+              "test_trades": 7
+            },
+            {
+              "window": 4,
+              "train_start": "2023-04-06 20:00:00+00:00",
+              "test_end": "2025-01-13 08:00:00+00:00",
+              "train_sharpe": 5.108776891534679,
+              "test_sharpe": 1.9271674544296817,
+              "test_net_pnl": 3895.8009230341995,
+              "test_win_rate": 0.3333333333333333,
+              "test_trades": 6
+            },
+            {
+              "window": 5,
+              "train_start": "2025-01-13 16:00:00+00:00",
+              "test_end": "2026-10-19 20:00:00+00:00",
+              "train_sharpe": 1.5842571877435432,
+              "test_sharpe": -165.37031072441997,
+              "test_net_pnl": -17444.376037334056,
+              "test_win_rate": 0.0,
+              "test_trades": 4
+            }
+          ]
+        },
+        "test_final": {
+          "trades": 23,
+          "net_pnl_usd": 8795.098448546201,
+          "sharpe": 0.5954893556540116,
+          "win_rate": 0.34782608695652173,
+          "profit_factor": 1.1019773006699924,
+          "max_drawdown": 29101.780685374848,
+          "avg_expectancy_usd": 382.39558471940006,
+          "solo_sma_sharpe": 0.12170916412409025,
+          "buy_and_hold_sharpe": 0.3968673872774193,
+          "buy_and_hold_pnl_usd": 96258.5,
+          "deflated_sharpe_ratio": 1.1076607567871343e-05,
+          "total_trials_penalized": 15120
+        }
+      }
+    },
+    "NQ_4h": {
+      "asset": "NQ",
+      "timeframe": "4h",
+      "train_summary": {
+        "max_sharpe": 3.7144107338183514,
+        "mean_sharpe": 0.5805815360899824,
+        "positive_sharpe_fraction": 0.7904761904761904
+      },
+      "finalist_evaluation": {
+        "params": {
+          "num_smas": 3,
+          "fast_sma": 20,
+          "mid_sma": 100,
+          "slow_sma": 150,
+          "macd_fast": 16,
+          "macd_slow": 35,
+          "macd_signal": 9,
+          "rsi_period": 7,
+          "atr_k": 1.5,
+          "tp_m": 1.5,
+          "use_macd": true,
+          "use_rsi": true,
+          "close_at_session_end": false
+        },
+        "validation": {
+          "strategy_sharpe": 5.4205322753275285,
+          "strategy_pnl_usd": 30152.09998096909,
+          "solo_sma_sharpe": -0.4076435807999926,
+          "buy_and_hold_sharpe": 0.6404269515048076
+        },
+        "walk_forward": {
+          "combined_oos_sharpe": 0.7450854405483053,
+          "windows": [
+            {
+              "window": 1,
+              "train_start": "2017-12-15 00:00:00+00:00",
+              "test_end": "2019-09-24 00:00:00+00:00",
+              "train_sharpe": -7.324491609757705,
+              "test_sharpe": -4.827962571122331,
+              "test_net_pnl": -3098.2227325112617,
+              "test_win_rate": 0.3333333333333333,
+              "test_trades": 6
+            },
+            {
+              "window": 2,
+              "train_start": "2019-09-24 04:00:00+00:00",
+              "test_end": "2021-07-01 00:00:00+00:00",
+              "train_sharpe": 5.823177815919004,
+              "test_sharpe": 3.469778825255992,
+              "test_net_pnl": 2884.1928287290502,
+              "test_win_rate": 0.5,
+              "test_trades": 4
+            },
+            {
+              "window": 3,
+              "train_start": "2021-07-01 08:00:00+00:00",
+              "test_end": "2023-04-06 16:00:00+00:00",
+              "train_sharpe": 4.579596778847857,
+              "test_sharpe": -2.840930874553699,
+              "test_net_pnl": -3784.0784393877984,
+              "test_win_rate": 0.3333333333333333,
+              "test_trades": 6
+            },
+            {
+              "window": 4,
+              "train_start": "2023-04-06 20:00:00+00:00",
+              "test_end": "2025-01-13 08:00:00+00:00",
+              "train_sharpe": 5.336858125830348,
+              "test_sharpe": 5.248914340613506,
+              "test_net_pnl": 12424.497538091411,
+              "test_win_rate": 0.5714285714285714,
+              "test_trades": 7
+            },
+            {
+              "window": 5,
+              "train_start": "2025-01-13 16:00:00+00:00",
+              "test_end": "2026-10-19 20:00:00+00:00",
+              "train_sharpe": 5.064498080913669,
+              "test_sharpe": 2.61325130440622,
+              "test_net_pnl": 8267.908655506995,
+              "test_win_rate": 0.5,
+              "test_trades": 6
+            }
+          ]
+        },
+        "test_final": {
+          "trades": 31,
+          "net_pnl_usd": 64433.44692860433,
+          "sharpe": 5.091131352632847,
+          "win_rate": 0.5483870967741935,
+          "profit_factor": 1.898669092246136,
+          "max_drawdown": 25772.853363737668,
+          "avg_expectancy_usd": 2078.4982880194943,
+          "solo_sma_sharpe": -0.630822491782506,
+          "buy_and_hold_sharpe": 0.3958069398418372,
+          "buy_and_hold_pnl_usd": 179751.0,
+          "deflated_sharpe_ratio": 0.0043694453917857284,
+          "total_trials_penalized": 15120
+        }
+      }
+    },
+    "BTC-USDT_4h": {
+      "asset": "BTC-USDT",
+      "timeframe": "4h",
+      "train_summary": {
+        "max_sharpe": 1.960144384291834,
+        "mean_sharpe": -2.8659832557832225,
+        "positive_sharpe_fraction": 0.02486772486772487
+      },
+      "finalist_evaluation": {
+        "params": {
+          "num_smas": 1,
+          "fast_sma": 20,
+          "mid_sma": 50,
+          "slow_sma": 200,
+          "macd_fast": 8,
+          "macd_slow": 17,
+          "macd_signal": 9,
+          "rsi_period": 21,
+          "atr_k": 3.0,
+          "tp_m": 2.0,
+          "use_macd": true,
+          "use_rsi": true,
+          "close_at_session_end": false
+        },
+        "validation": {
+          "strategy_sharpe": 4.73697540151691,
+          "strategy_pnl_usd": 3155.586492375808,
+          "solo_sma_sharpe": -0.062301904667478786,
+          "buy_and_hold_sharpe": 0.13975411036840932
+        },
+        "walk_forward": {
+          "combined_oos_sharpe": -0.5945084929750991,
+          "windows": [
+            {
+              "window": 1,
+              "train_start": "2022-09-12 16:00:00+00:00",
+              "test_end": "2023-07-09 12:00:00+00:00",
+              "train_sharpe": -3.8707700935430274,
+              "test_sharpe": 0.5636584282073835,
+              "test_net_pnl": 77.5940506685335,
+              "test_win_rate": 0.3333333333333333,
+              "test_trades": 6
+            },
+            {
+              "window": 2,
+              "train_start": "2023-07-09 16:00:00+00:00",
+              "test_end": "2024-05-04 12:00:00+00:00",
+              "train_sharpe": -2.8355169530522417,
+              "test_sharpe": -21.000863077955344,
+              "test_net_pnl": -1747.442338342782,
+              "test_win_rate": 0.25,
+              "test_trades": 4
+            },
+            {
+              "window": 3,
+              "train_start": "2024-05-04 16:00:00+00:00",
+              "test_end": "2025-02-28 12:00:00+00:00",
+              "train_sharpe": 2.706369621642461,
+              "test_sharpe": -1.6773079848263162,
+              "test_net_pnl": -483.9723372641969,
+              "test_win_rate": 0.25,
+              "test_trades": 8
+            },
+            {
+              "window": 4,
+              "train_start": "2025-02-28 16:00:00+00:00",
+              "test_end": "2025-12-25 12:00:00+00:00",
+              "train_sharpe": 2.6115498830848565,
+              "test_sharpe": 12.544248132801204,
+              "test_net_pnl": 2710.5347751755608,
+              "test_win_rate": 0.7142857142857143,
+              "test_trades": 7
+            },
+            {
+              "window": 5,
+              "train_start": "2025-12-25 20:00:00+00:00",
+              "test_end": "2026-10-21 16:00:00+00:00",
+              "train_sharpe": 0.9625717833229004,
+              "test_sharpe": -7.582501695673551,
+              "test_net_pnl": -1122.4027839837695,
+              "test_win_rate": 0.125,
+              "test_trades": 8
+            }
+          ]
+        },
+        "test_final": {
+          "trades": 35,
+          "net_pnl_usd": -1236.0270265539286,
+          "sharpe": -1.410884950359504,
+          "win_rate": 0.22857142857142856,
+          "profit_factor": 0.8309600875937738,
+          "max_drawdown": 3442.5646659292815,
+          "avg_expectancy_usd": -35.31505790154082,
+          "solo_sma_sharpe": 0.7313516579441095,
+          "buy_and_hold_sharpe": 0.03177911480720745,
+          "buy_and_hold_pnl_usd": -453.9951094044352,
+          "deflated_sharpe_ratio": 5.366127404705206e-07,
+          "total_trials_penalized": 15120
+        }
+      }
+    },
+    "ETH-USDT_4h": {
+      "asset": "ETH-USDT",
+      "timeframe": "4h",
+      "train_summary": {
+        "max_sharpe": 4.919504128878936,
+        "mean_sharpe": -2.5473976061888592,
+        "positive_sharpe_fraction": 0.059788359788359786
+      },
+      "finalist_evaluation": {
+        "params": {
+          "num_smas": 2,
+          "fast_sma": 21,
+          "mid_sma": 50,
+          "slow_sma": 200,
+          "macd_fast": 16,
+          "macd_slow": 35,
+          "macd_signal": 9,
+          "rsi_period": 7,
+          "atr_k": 3.0,
+          "tp_m": 1.5,
+          "use_macd": true,
+          "use_rsi": true,
+          "close_at_session_end": false
+        },
+        "validation": {
+          "strategy_sharpe": 7.640210443159816,
+          "strategy_pnl_usd": 5631.970132905915,
+          "solo_sma_sharpe": 2.3828834706753064,
+          "buy_and_hold_sharpe": 0.3405419046432998
+        },
+        "walk_forward": {
+          "combined_oos_sharpe": 3.764694847420326,
+          "windows": [
+            {
+              "window": 1,
+              "train_start": "2022-09-12 16:00:00+00:00",
+              "test_end": "2023-07-09 16:00:00+00:00",
+              "train_sharpe": -10.893181325181974,
+              "test_sharpe": -103.69072207068493,
+              "test_net_pnl": -1309.3396336927349,
+              "test_win_rate": 0.0,
+              "test_trades": 4
+            },
+            {
+              "window": 2,
+              "train_start": "2023-07-10 00:00:00+00:00",
+              "test_end": "2024-05-04 16:00:00+00:00",
+              "train_sharpe": 2.561160868867308,
+              "test_sharpe": -0.9595240200717133,
+              "test_net_pnl": -218.93919605370843,
+              "test_win_rate": 0.3333333333333333,
+              "test_trades": 6
+            },
+            {
+              "window": 3,
+              "train_start": "2024-05-05 00:00:00+00:00",
+              "test_end": "2025-02-28 16:00:00+00:00",
+              "train_sharpe": 7.254539775688086,
+              "test_sharpe": 103.93266852079755,
+              "test_net_pnl": 2443.6889088354355,
+              "test_win_rate": 1.0,
+              "test_trades": 2
+            },
+            {
+              "window": 4,
+              "train_start": "2025-03-01 00:00:00+00:00",
+              "test_end": "2025-12-25 16:00:00+00:00",
+              "train_sharpe": 5.7838057192599965,
+              "test_sharpe": 7.186870802242791,
+              "test_net_pnl": 1678.340811318478,
+              "test_win_rate": 0.6,
+              "test_trades": 5
+            },
+            {
+              "window": 5,
+              "train_start": "2025-12-26 00:00:00+00:00",
+              "test_end": "2026-10-21 16:00:00+00:00",
+              "train_sharpe": -2.3682096550595877,
+              "test_sharpe": 3.277952964814448,
+              "test_net_pnl": 419.0524275435796,
+              "test_win_rate": 0.5,
+              "test_trades": 4
+            }
+          ]
+        },
+        "test_final": {
+          "trades": 19,
+          "net_pnl_usd": -596.7524830103455,
+          "sharpe": -0.9948696904888773,
+          "win_rate": 0.42105263157894735,
+          "profit_factor": 0.8936060169287542,
+          "max_drawdown": 2463.281719189809,
+          "avg_expectancy_usd": -31.40802542159713,
+          "solo_sma_sharpe": 5.632288730303259,
+          "buy_and_hold_sharpe": -0.04153846033938439,
+          "buy_and_hold_pnl_usd": -1591.036745451167,
+          "deflated_sharpe_ratio": 1.8442789110410442e-06,
+          "total_trials_penalized": 15120
+        }
+      }
+    }
+  },
+  "cross_asset_robustness": {
+    "NQ_to_ES_1h": {
+      "source": "NQ (1h)",
+      "target": "ES (1h)",
+      "target_sharpe": 1.8433414970054072,
+      "target_net_pnl_usd": 63833.814765135525,
+      "target_trades": 253,
+      "target_win_rate": 0.40711462450592883
+    },
+    "ES_to_NQ_1h": {
+      "source": "ES (1h)",
+      "target": "NQ (1h)",
+      "target_sharpe": 0.5809282171662644,
+      "target_net_pnl_usd": -3731.741849226695,
+      "target_trades": 172,
+      "target_win_rate": 0.45348837209302323
+    },
+    "BTC_to_ETH_1h": {
+      "source": "BTC-USDT (1h)",
+      "target": "ETH-USDT (1h)",
+      "target_sharpe": 0.17648422634370048,
+      "target_net_pnl_usd": 532.8339766575882,
+      "target_trades": 166,
+      "target_win_rate": 0.41566265060240964
+    },
+    "ETH_to_BTC_1h": {
+      "source": "ETH-USDT (1h)",
+      "target": "BTC-USDT (1h)",
+      "target_sharpe": -1.052017093613543,
+      "target_net_pnl_usd": -1933.8895618703314,
+      "target_trades": 135,
+      "target_win_rate": 0.3925925925925926
+    },
+    "NQ_to_BTC_1h": {
+      "source": "NQ (1h)",
+      "target": "BTC-USDT (1h)",
+      "target_sharpe": -1.0370723523106622,
+      "target_net_pnl_usd": -2775.706518831532,
+      "target_trades": 331,
+      "target_win_rate": 0.36253776435045315
+    },
+    "BTC_to_NQ_1h": {
+      "source": "BTC-USDT (1h)",
+      "target": "NQ (1h)",
+      "target_sharpe": 0.9842958914927833,
+      "target_net_pnl_usd": 14203.966694926989,
+      "target_trades": 147,
+      "target_win_rate": 0.4557823129251701
+    }
+  },
+  "total_combinations_tested": 15120
+}
