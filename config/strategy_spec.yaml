@@ -1,0 +1,33 @@
+# Especificación pre-registrada de la estrategia (Gao, Han, Li y Zhou, JFE 2018).
+timezone: "America/New_York"
+calendar: "XNYS"
+bars:                       # etiqueta = inicio de la barra de 1 minuto en hora ET
+  first_half_hour_close: "09:59"
+  r12_open: "15:00"
+  r12_close: "15:29"
+  entry_open: "15:30"
+  exit_close: "15:59"
+  prev_close: "15:59"       # del día hábil anterior, mismo contrato
+  vol_window_start: "09:30"
+  vol_window_end: "09:59"
+critical_bars: ["09:59", "15:00", "15:29", "15:30", "15:59"]
+volatility:
+  min_bars_in_window: 20     # mínimo de barras de 1 min en 09:30-09:59 para calcular la volatilidad
+  expanding_min_history_days: 250
+hypotheses:
+  main: [H1, H2, H3, H4]
+  exploratory: [E1, E2, E3]
+  baselines: [B1, B2, B3, B4]
+inference:
+  seed: 20260421
+  bootstrap_reps: 10000
+  permutation_reps: 10000
+  newey_west_lags: 5
+  alpha: 0.05
+acceptance:                 # aplicada solo en la prueba final, caso de costos base
+  A1_holm_p_max: 0.05
+  A2_sharpe_min: 0.5
+  A3_stress_sharpe_min_exclusive: 0.0
+  A4_permutation_p_max: 0.05
+  A6_min_fraction_positive_years: 0.5
+annualization_days: 252

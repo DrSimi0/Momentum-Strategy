@@ -1,0 +1,11 @@
+# Costos por contrato y por lado (entrada y salida). Fijados antes del análisis.
+cases:
+  base:
+    slippage_ticks_per_side: 0.5
+    commission_usd_per_side: 2.00
+  stress:
+    slippage_ticks_per_side: 1.0
+    commission_usd_per_side: 2.50
+sensitivity:
+  slippage_ticks_per_side: [0.0, 0.25, 0.5, 1.0, 2.0]
+  commission_usd_per_side: 2.00   # comisión del caso base durante el barrido

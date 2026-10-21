@@ -1,26 +1,26 @@
-# Python / Cache
+# --- Secretos (NUNCA versionar) ---
+.env
+.env.*
+!.env.example
+
+# --- Datos (crudos y procesados, se regeneran con src.main) ---
+data/raw/
+data/processed/
+*.parquet
+*.dbn
+*.dbn.zst
+
+# --- Archivo: copias locales no versionadas de la estrategia anterior ---
+archive/btc_bingx_v1/local_untracked/
+
+# --- Python ---
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
 .pytest_cache/
-
-# Data processed raw files (large files)
-# Keep manifest.json committed!
-data/processed/*.csv
-*.parquet
-data/historical/*.parquet
-data/test_sample_15m.parquet
-
-# Reports locks and generated artifacts can be tracked or ignored
-reports/.holdout_used
-reports/*.png
-reports/*.json
-reports/*.md
-
-# Environment
+*.egg-info/
 .venv/
 venv/
-ENV/
+
+# --- Editores ---
 .idea/
 .vscode/

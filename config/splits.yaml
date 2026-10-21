@@ -1,0 +1,10 @@
+# Particiones fijadas antes de mirar resultados (fechas de sesión en America/New_York, inclusivas).
+development:
+  start: "2011-01-03"
+  end: "2019-12-31"
+validation:
+  start: "2020-01-01"
+  end: "2022-12-31"
+final:
+  start: "2023-01-01"
+  end: null   # último día completo disponible en Databento; se fija en data/metadata.json

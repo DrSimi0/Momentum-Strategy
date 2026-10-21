@@ -1,0 +1,24 @@
+[project]
+name = "intraday-momentum-es-nq"
+version = "4.0.0"
+description = "Evaluación académica del momentum intradía (Gao, Han, Li y Zhou, 2018) en futuros ES y NQ con datos Databento."
+requires-python = ">=3.11"
+dependencies = [
+    "databento>=0.87",
+    "pandas>=2.2",
+    "numpy>=2.0",
+    "scipy>=1.13",
+    "statsmodels>=0.14",
+    "pandas_market_calendars>=4.4",
+    "pyarrow>=15",
+    "pyyaml>=6",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["realdata: requiere datos descargados de Databento (se omite si no existen)"]
