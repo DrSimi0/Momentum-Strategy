@@ -1,0 +1,89 @@
+{
+  "common_test_start": "2025-12-25 16:00:00",
+  "common_test_end": "2026-10-19 20:00:00",
+  "summary": [
+    {
+      "Activo / Cartera": "ES (E-mini S&P 500)",
+      "Estrategia": "Confluencia 3 SMAs (20,100,150) + MACD + RSI",
+      "PnL_USD": 29433.771100769532,
+      "Sharpe": 1.1356607249399528,
+      "Max_Drawdown_USD": 12026.267385405947,
+      "Calmar": 2.4474569005914377
+    },
+    {
+      "Activo / Cartera": "NQ (E-mini Nasdaq)",
+      "Estrategia": "Confluencia 3 SMAs (20,100,150) + MACD + RSI",
+      "PnL_USD": 12129.555286656076,
+      "Sharpe": 0.2233688239807258,
+      "Max_Drawdown_USD": 41255.80907439244,
+      "Calmar": 0.29400842108765995
+    },
+    {
+      "Activo / Cartera": "Sub-cartera Futuros",
+      "Estrategia": "50% ES + 50% NQ",
+      "PnL_USD": 20781.663193712797,
+      "Sharpe": 0.6740229938859874,
+      "Max_Drawdown_USD": 20236.719027932744,
+      "Calmar": 1.0269284840604778
+    },
+    {
+      "Activo / Cartera": "BTC-USDT",
+      "Estrategia": "Solo-SMA 21/200 Tendencial",
+      "PnL_USD": 4303.720302020901,
+      "Sharpe": 1.2359999481100303,
+      "Max_Drawdown_USD": 4321.7496578919445,
+      "Calmar": 0.9958282276165348
+    },
+    {
+      "Activo / Cartera": "ETH-USDT",
+      "Estrategia": "Solo-SMA 21/200 Tendencial",
+      "PnL_USD": 9287.95209752575,
+      "Sharpe": 1.9114405046935605,
+      "Max_Drawdown_USD": 4767.291575676545,
+      "Calmar": 1.9482660017932005
+    },
+    {
+      "Activo / Cartera": "Sub-cartera Cripto",
+      "Estrategia": "50% BTC + 50% ETH",
+      "PnL_USD": 6795.8361997733255,
+      "Sharpe": 2.0802132277514573,
+      "Max_Drawdown_USD": 4020.9208883443193,
+      "Calmar": 1.6901193503888168
+    },
+    {
+      "Activo / Cartera": "CARTERA COMBINADA 50/50",
+      "Estrategia": "50% Futuros + 50% Cripto",
+      "PnL_USD": 20584.58589651638,
+      "Sharpe": 1.544167133583593,
+      "Max_Drawdown_USD": 6229.878516406022,
+      "Calmar": 3.3041713160711037
+    }
+  ],
+  "correlation_matrix": {
+    "pnl_es": {
+      "pnl_es": 1.0,
+      "pnl_nq": 0.06465503601277421,
+      "pnl_btc": -0.004643767020947748,
+      "pnl_eth": -0.1180703638475153
+    },
+    "pnl_nq": {
+      "pnl_es": 0.06465503601277421,
+      "pnl_nq": 1.0,
+      "pnl_btc": 0.02443801720091886,
+      "pnl_eth": -0.08595669727426836
+    },
+    "pnl_btc": {
+      "pnl_es": -0.004643767020947748,
+      "pnl_nq": 0.02443801720091886,
+      "pnl_btc": 1.0,
+      "pnl_eth": 0.2055340849706326
+    },
+    "pnl_eth": {
+      "pnl_es": -0.1180703638475153,
+      "pnl_nq": -0.08595669727426836,
+      "pnl_btc": 0.2055340849706326,
+      "pnl_eth": 1.0
+    }
+  },
+  "drawdown_reduction_pct": 61.42428181587331
+}

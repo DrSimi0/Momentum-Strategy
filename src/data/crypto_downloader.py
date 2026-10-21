@@ -91,6 +91,7 @@ def download_crypto_history(
 
     # Determinar delta aproximado según interval para retroceder
     interval_minutes = {
+        "5m": 5,
         "15m": 15,
         "1h": 60,
         "4h": 240,

@@ -58,7 +58,10 @@ def run_walk_forward_analysis(
     total_oos_trades = len(oos_returns)
     mean_oos = float(np.mean(oos_returns)) if total_oos_trades > 0 else 0.0
     std_oos = float(np.std(oos_returns, ddof=1)) if total_oos_trades > 1 else 0.0
-    combined_oos_sharpe = float(mean_oos / std_oos * np.sqrt(costs.annualization_factor)) if std_oos > 1e-9 else 0.0
+    if total_oos_trades >= 30 and std_oos > 1e-9:
+        combined_oos_sharpe = float(mean_oos / std_oos * np.sqrt(costs.annualization_factor))
+    else:
+        combined_oos_sharpe = np.nan
 
     return {
         "n_windows": n_windows,

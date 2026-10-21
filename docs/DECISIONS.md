@@ -46,3 +46,25 @@ Formato: decisión · alternativas · motivo. Ordenadas por fecha de adopción.
 - **Decisión:** Se declara formalmente el veredicto **REJECTED** para las 8 hipótesis primarias evaluadas en los futuros ES y NQ. Se genera el candado `reports/FINAL_RUN.lock`, se guarda el desglose cuantitativo reproducible en `reports/results.json`, y se publica el informe en `reports/informe_momentum_intradia.md`.
 - **Alternativas:** Re-optimizar umbrales, filtrar por subregímenes o alterar reglas tras ver los resultados del holdout.
 - **Motivo:** En investigación cuantitativa rigurosa, un resultado negativo fuera de muestra es un resultado definitivo. Modificar parámetros tras consumir el holdout violaría los principios científicos del pre-registro y generaría resultados espurios.
+
+## D-009 · Evaluación de la estrategia SMA + MACD + RSI en temporalidades cortas (15m y 5m) (2026-10-21)
+- **Decisión:** Se evaluó sistemáticamente la estrategia multiactivo SMA + MACD + RSI en temporalidades de 15 minutos y 5 minutos sobre los 4 activos (ES, NQ, BTC-USDT y ETH-USDT), remuestreando los parquets de 1m crudo para índices y descargando datos históricos públicos desde BingX para criptoactivos. Se ejecutó una rejilla de 1,890 combinaciones por activo y temporalidad con división cronológica 60% Train, 20% Val y 20% Test Final.
+- **Alternativas:** Evaluar únicamente en temporalidades swing (1h y 4h).
+- **Motivo:** Determinar empíricamente si reducir el timeframe incrementa la potencia estadística y el rendimiento operativo o si, por el contrario, los costos de transacción y el ruido de mercado deterioran la expectativa.
+- **Resultado:** La reducción de temporalidad generó un incremento en el número de operaciones (hasta 495 trades en NQ 5m), pero con pérdidas netas masivas acumuladas (-$109,690 USD en NQ 15m y -$74,982 USD en ES 5m) y Sharpes fuertemente negativos en cripto (BTC 5m: -11.16). Se confirmó que el ruido y la fricción de comisiones/slippage destruyen sistemáticamente el capital en horizontes intradiarios de 5m y 15m.
+
+## D-010 · Formalización de Cartera Híbrida 50% Futuros / 50% Cripto (2026-10-21)
+- **Decisión:** Se implementó una cartera combinada multiactivo que asigna el 50% del peso a Futuros (ES y NQ con confluencia 3 SMAs + MACD lento + RSI) y el 50% a Criptoactivos (BTC y ETH con Solo-SMA 21/200 tendencial puro), simulando el periodo de prueba común fuera de muestra (2025-12-25 a 2026-10-19).
+- **Alternativas:** Mantener los activos aislados o forzar la misma estrategia técnica a ambas clases.
+- **Motivo:** Los activos tradicionales y las criptomonedas exhiben correlaciones de retornos prácticamente nulas (~0.00 entre ES/NQ y BTC/ETH), lo que permite que una clase compense los drawdowns de la otra según la teoría moderna de cartera de Markowitz.
+- **Resultado:** La cartera combinada generó un Sharpe de 1.54, un beneficio neto de $20,584 USD y redujo el Max Drawdown en un **61.4%** frente al drawdown individual promedio (de ~$16,149 USD a solo $6,229 USD), alcanzando un Calmar ratio de 3.30.
+
+## D-011 · Saneamiento Metodológico y Pre-registro Inmutable (2026-10-21)
+- **Decisión:** Se archivaron todos los resultados exploratorios previos en `reports/archive/fase_previa_contaminada/`, se completó la historia continua de Databento para ES y NQ de 2010 a 2017 ($18.42 USD de costo API) obteniendo 16.36 años continuos, y se congeló el pre-registro metodológico en `PREREGISTRO.md` con commit inmutable en git.
+- **Alternativas:** Re-optimizar parámetros o mantener la ventana contaminada previa.
+- **Motivo:** Corregir el sesgo de selección posterior en el Holdout y formalizar un protocolo científico con contabilidad exacta de 32 combinaciones por activo.
+
+## D-012 · Veredicto Final del Protocolo Pre-registrado: REJECTED (2026-10-21)
+- **Decisión:** Se declara formalmente el veredicto **REJECTED** para la estrategia SMA + MACD + RSI en ES, NQ, BTC-USDT y ETH-USDT. En el Holdout bloqueado (2023-2026 en futuros, 2025-2026 en cripto), todos los activos arrojaron Sharpe neto negativo (-0.52 en ES, -0.20 en NQ, -1.30 en BTC, -0.73 en ETH) y colapsaron en el Walk-Forward de 14 ventanas (<43% positivas).
+- **Alternativas:** Ensamblar la cartera multiactivo forzando ponderaciones.
+- **Motivo:** En cumplimiento de la Etapa 5 del pre-registro, no se despliega una cartera combinada sobre estrategias cuyos activos individuales carecen de edge validado.

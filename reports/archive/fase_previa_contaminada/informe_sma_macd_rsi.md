@@ -114,12 +114,45 @@ Dado que se evaluaron $1,890$ combinaciones por activo y timeframe ($15,120$ ens
 
 ---
 
-## 9. Conclusión Final
+## 9. Pruebas en Temporalidades Cortas (15 minutos y 5 minutos)
 
-La estrategia de confluencia **SMA + MACD + RSI no es apta para implementación real**. Su rendimiento en validación es una ilusión producida por el sobreajuste paramétrico sobre un espacio de 1,890 combinaciones. En el Test Final, la estrategia sufre un colapso de rentabilidad, genera una muestra insuficiente de trades y resulta inferior a modelos más simples (como la tendencia de Solo-SMA en cripto o la tenencia pasiva Buy & Hold en índices).
+Para responder a la pregunta de si la estrategia mejora o consigue mayor significancia en horizontes intradiarios más veloces, se remuestrearon y descargaron datos en **15m** y **5m** para los 4 activos (ES, NQ, BTC-USDT, ETH-USDT), reejecutando la rejilla completa de **1,890 combinaciones** por activo y temporalidad (otras 15,120 simulaciones adicionales).
+
+### Tabla de Resultados en Temporalidades Cortas (Test Final Fuera de Muestra)
+
+| Activo | TF | Configuración Óptima (SMAs / MACD / RSI / ATR) | Trades Test | Retorno Neto Test (USD) | Sharpe Test Final | Win Rate | Profit Factor | Deflated Sharpe (DSR) | Sharpe Buy & Hold | Sharpe Solo-SMA |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **ES** | **15m** | 3 SMAs (10, 50, 100), MACD (8,17,9), RSI 21, k=3.0, m=2.0 | 130 | -\$67,969 | -2.45 | 30.77% | 0.68 | 0.00% | +0.20 | -0.58 |
+| **NQ** | **15m** | 2 SMAs (21, 100), MACD (16,35,9), RSI 14, k=3.0, m=2.0 | 149 | -\$109,690 | -1.83 | 28.86% | 0.76 | 0.00% | +0.20 | -0.54 |
+| **BTC-USDT** | **15m** | 3 SMAs (10, 100, 150), MACD (12,26,9), RSI 7, k=3.0, m=2.0 | 14 | +\$45.85 | +0.71 | 50.00% | 1.08 | 0.01% | +0.02 | -5.26 |
+| **ETH-USDT** | **15m** | 2 SMAs (30, 100), MACD (8,17,9), RSI 21, k=3.0, m=2.0 | 36 | -\$174.97 | -0.74 | 33.33% | 0.91 | 0.00% | -0.31 | -3.68 |
+| **ES** | **5m** | 3 SMAs (10, 50, 100), MACD (12,26,9), RSI 7, k=3.0, m=2.0 | 202 | -\$74,982 | -2.91 | 29.70% | 0.64 | 0.00% | +0.12 | -1.16 |
+| **NQ** | **5m** | 3 SMAs (30, 50, 100), MACD (8,17,9), RSI 14, k=3.0, m=1.5 | 495 | -\$11,944 | -0.13 | 41.41% | 0.99 | 0.00% | +0.12 | -0.34 |
+| **BTC-USDT** | **5m** | 3 SMAs (30, 100, 150), MACD (8,17,9), RSI 7, k=3.0, m=2.0 | 21 | -\$752.04 | -11.16 | 19.05% | 0.28 | 0.00% | +0.15 | -11.32 |
+| **ETH-USDT** | **5m** | 3 SMAs (30, 100, 200), MACD (12,26,9), RSI 21, k=3.0, m=2.0 | 27 | -\$672.31 | -4.85 | 25.93% | 0.57 | 0.00% | -0.03 | -5.82 |
+
+### Hallazgos Clave en 15m y 5m:
+1. **La Fricción y el Ruido Intradía Destruyen el Capital:**
+   - En futuros de índices (ES y NQ), el número de operaciones sube a niveles con alta significancia muestral (entre 130 y 495 trades en holdout). Sin embargo, las pérdidas netas son masivas: $-\$109,690$ USD en NQ 15m y $-\$74,982$ USD en ES 5m.
+   - El ruido aleatorio en velas cortas genera continuos falsos quiebres de medias y whipsaws de MACD. Al sumar comisiones y deslizamiento por cada operación, la curva de balance tiene pendiente sistemáticamente negativa.
+2. **Cripto en Temporalidades Rápidas:**
+   - En BTC y ETH de 5m, los resultados son catastróficos: Sharpes de $-11.16$ y $-4.85$, con tasas de acierto de apenas 19% a 26%.
+   - En BTC 15m se obtuvo una ganancia testimonial de $+\$45.85$ USDT, pero con solo 14 trades en la muestra final, lo cual no posee ninguna significancia estadística (DSR de $0.01\%$).
+3. **Tendencia por Horizonte Temporal:**
+   - La regla general observada en los 4 activos es: **a menor temporalidad ($4\text{h} \to 1\text{h} \to 15\text{m} \to 5\text{m}$), mayor es el impacto de la fricción y peor es el desempeño neto**.
+
+---
+
+## 10. Conclusión Final
+
+La estrategia de confluencia **SMA + MACD + RSI no es apta para implementación real en ninguna de las temporalidades evaluadas (4h, 1h, 15m o 5m)**. 
+
+- En temporalidades altas (4h y 1h), la confluencia es tan restrictiva que genera muy pocas operaciones (<45 trades), sufriendo de sobreajuste masivo y colapso fuera de muestra.
+- En temporalidades bajas (15m y 5m), el volumen de operaciones aumenta, pero los costos de transacción y el ruido aleatorio del mercado destruyen el capital de forma sistemática y acelerada.
 
 ---
 *Archivos generados en el estudio:*
-- *Tabla Resumen CSV:* [`reports/tables/summary_multi_asset_results.csv`](file:///c:/Users/leono/OneDrive/Documentos/QUANT%20TRADING/Momentum-Strategy/reports/tables/summary_multi_asset_results.csv)
-- *Dataset JSON Completo:* [`reports/results_sma_system.json`](file:///c:/Users/leono/OneDrive/Documentos/QUANT%20TRADING/Momentum-Strategy/reports/results_sma_system.json)
+- *Tabla Resumen 1h y 4h:* [`reports/tables/summary_multi_asset_results.csv`](file:///c:/Users/leono/OneDrive/Documentos/QUANT%20TRADING/Momentum-Strategy/reports/tables/summary_multi_asset_results.csv)
+- *Tabla Resumen 15m y 5m:* [`reports/tables/summary_short_timeframes.csv`](file:///c:/Users/leono/OneDrive/Documentos/QUANT%20TRADING/Momentum-Strategy/reports/tables/summary_short_timeframes.csv)
+- *Resultados JSON 15m y 5m:* [`reports/results_short_timeframes.json`](file:///c:/Users/leono/OneDrive/Documentos/QUANT%20TRADING/Momentum-Strategy/reports/results_short_timeframes.json)
 - *Mapas de Calor de Estabilidad:* Directorio [`reports/figures/`](file:///c:/Users/leono/OneDrive/Documentos/QUANT%20TRADING/Momentum-Strategy/reports/figures)

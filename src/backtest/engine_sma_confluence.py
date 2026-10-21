@@ -261,10 +261,14 @@ def run_sma_confluence_backtest(
     neg_sum = float(np.abs(np.sum(pnls[pnls < 0])))
     pf = (pos_sum / neg_sum) if neg_sum > 0 else np.nan
 
-    # Sharpe anualizado basado en la frecuencia de trades o serie diaria
+    # Sharpe anualizado: solo se reporta si la muestra tiene al menos 30 operaciones
+    # para evitar artefactos extremos por muestra insuficiente (ej. -94.53)
     mean_ret = float(np.mean(rets))
     std_ret = float(np.std(rets, ddof=1)) if n_trades > 1 else 0.0
-    sharpe = float((mean_ret / std_ret) * np.sqrt(costs.annualization_factor)) if std_ret > 1e-9 else 0.0
+    if n_trades >= 30 and std_ret > 1e-9:
+        sharpe = float((mean_ret / std_ret) * np.sqrt(costs.annualization_factor))
+    else:
+        sharpe = np.nan
 
     # Drawdown monetario
     cum_pnl = np.cumsum(pnls)

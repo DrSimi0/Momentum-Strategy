@@ -38,6 +38,7 @@ def resample_ohlcv_bars(
 
     # Mapeo de frecuencias para pandas
     freq_map = {
+        "5m": "5min",
         "15m": "15min",
         "1h": "1h",
         "4h": "4h",
@@ -47,7 +48,7 @@ def resample_ohlcv_bars(
     if not freq:
         raise ValueError(f"Temporalidad no soportada: {target_timeframe}")
 
-    if asset_family == "indices" and target_timeframe in ("15m", "1h"):
+    if asset_family == "indices" and target_timeframe in ("5m", "15m", "1h"):
         # Convertir a hora ET para alinear con apertura regular 09:30 ET
         df_et = df.copy()
         df_et.index = df_et.index.tz_convert(timezone)
