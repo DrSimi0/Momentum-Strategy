@@ -13,6 +13,11 @@ def compute_sma(series: pd.Series, window: int) -> pd.Series:
     return series.rolling(window=window, min_periods=window).mean()
 
 
+def compute_ema(series: pd.Series, window: int) -> pd.Series:
+    """Calcula la Media Móvil Exponencial (EMA)."""
+    return series.ewm(span=window, min_periods=window, adjust=False).mean()
+
+
 def compute_macd(
     close: pd.Series,
     fast_period: int = 12,
