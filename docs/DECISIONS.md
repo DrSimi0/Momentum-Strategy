@@ -92,3 +92,15 @@ Formato: decisión · alternativas · motivo. Ordenadas por fecha de adopción.
   2. **Reducción de Drawdown por Gatillo de Velas:** En NQ 4h, exigir el patrón de vela recortó el Max Drawdown a la mitad (de $91k a $47k USD) e incrementó el beneficio total a +$182,218 USD (Sharpe 2.14). En ES 1h, redujo el drawdown un 26% ($22k USD) y duplicó el Sharpe de 1.04 a 2.04.
   3. **Persistencia OOS:** A diferencia de los componentes aislados, la confluencia multicapa mantuvo Sharpe > 2.7 en validación fuera de muestra (2021–2026) en 1h para ES y NQ.
 - **Implementación:** Código en `src/strategies/unified_strategy.py`, evaluación en `scripts/run_unified_strategy.py` y forward test continuo en `scripts/forward_test_signal_generator.py`.
+
+## D-016 · Bifurcación en Dos Ramas y Optimización en Menor Temporalidad M5/M15 (2026-10-22)
+- **Decisión:** Conforme a la instrucción del usuario, se evaluó la estrategia unificada en M15 y M5. Al comprobarse que en M5 el Sharpe se deteriora severamente (NQ 5m Sharpe 0.84, BTC 5m Sharpe -5.93) y el costo de comisiones consume más de $34,000 USD, se bifurcó el repositorio en dos ramas:
+  1. **Rama 1 (`main`):** Conserva la estrategia unificada swing en temporalidades mayores (**1h y 4h**), con Sharpe 2.04 a 2.45 y mínima fricción.
+  2. **Rama 2 (`feature/lower-tf-m5-m15`):** Rama especializada en optimización intradiaria con 4 mecanismos:
+     - Filtro horario RTH institucional (10:00 a 15:15 ET).
+     - Cierre forzoso MOC a las 15:50 ET (sin riesgo overnight).
+     - Medias de microestructura intradiaria (EMA 20 y EMA 80).
+     - Filtro de expansión de volatilidad (`ATR >= 0.95 * SMA(ATR, 40)`).
+- **Resultado en la Rama 2:**
+  - En **NQ 15m**, la configuración optimizada elevó el Sharpe de **1.19 a 1.88**, subió el beneficio neto a **+$136,951 USD** (+$40k vs línea base) y recortó el Max Drawdown a la **mitad** (de $65,795 a **$32,821 USD**).
+  - En **M5**, el filtro de volatilidad rescató el PnL neto de pérdidas a positivo (+$56,202 USD en NQ), pero demostró que 5 minutos es el límite inferior donde la microestructura de comisiones impone un techo al Sharpe.
