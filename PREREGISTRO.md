@@ -1,66 +1,69 @@
-# PRE-REGISTRO METODOLÓGICO INMUTABLE
+# PRE-REGISTRO METODOLÓGICO INMUTABLE (VERSIÓN 2 — HOLDOUT 2010–2017)
 
 **Fecha:** 2026-10-21  
-**Estado:** CONGELADO PREVIO A EVALUACIÓN  
-**Principio de Inmutabilidad:** Este documento define todas las hipótesis, reglas operativas, espacio paramétrico cerrado y criterios cuantitativos de aceptación antes de ejecutar cualquier análisis de optimización o abrir la partición de prueba. Queda terminantemente prohibido alterar cualquier umbral, parámetro o partición tras observar los resultados.
+**Estado:** CONGELADO PREVIO A CUALQUIER SIMULACIÓN  
+**Inmutabilidad:** Este documento define la hipótesis única, la grilla de parámetros, los conjuntos de datos, los criterios de aceptación y las reglas de aislamiento antes de ejecutar cualquier backtest. Queda prohibido alterar cualquier umbral posterior a los resultados.
 
 ---
 
 ## 1. Hipótesis Única de Investigación
 
-¿Puede un sistema de seguimiento de tendencia por confluencia técnica en velas de 4 horas (4h) que combina:
-1. **Filtro de Tendencia Macro:** Alineación de Medias Móviles Simples (2 SMAs: $\text{Close} > \text{SMA}_{\text{lenta}}$ y $\text{SMA}_{\text{rápida}} > \text{SMA}_{\text{lenta}}$; o 3 SMAs: $\text{SMA}_{\text{rápida}} > \text{SMA}_{\text{media}} > \text{SMA}_{\text{lenta}}$).
-2. **Gatillo de Impulso:** Cruce alcista del histograma MACD por encima de cero en dirección de la tendencia (o cruce bajista por debajo de cero para cortos).
-3. **Filtro de Sobreextensión:** RSI(14) en zona de confirmación sin agotamiento ($40 \le \text{RSI} \le 70$ para largos; $30 \le \text{RSI} \le 60$ para cortos).
-4. **Gestión de Salida:** Stop Loss inicial a $k \times \text{ATR}(14)$ y Take Profit a $m \times \text{Riesgo}$ (o reversión contraria de las SMAs).
+¿Puede un sistema de momentum técnico en velas de 4 horas (4h) que combina:
+1. **Filtro de Tendencia:** Alineación de SMAs (2 SMAs: Close > SMA lenta y rápida > lenta; o 3 SMAs: rápida > media > lenta).
+2. **Gatillo de Impulso:** Cruce del histograma MACD por encima de cero en dirección de la tendencia.
+3. **Filtro de Sobreextensión:** RSI(14) en zona de impulso ($40 \le \text{RSI} \le 70$ para largos; $30 \le \text{RSI} \le 60$ para cortos).
+4. **Gestión de Salida:** Stop Loss $k \times \text{ATR}(14)$, Take Profit $m \times \text{Riesgo}$, o **salida al cierre por cruce contrario de SMAs** (ej. reversión bajista de la alineación de medias).
 
-Generar un rendimiento ajustado por riesgo estadísticamente significativo (Sharpe neto anualizado $\ge 1.00$, Deflated Sharpe $\ge 95\%$ y robustez temporal en Walk-Forward $\ge 60\%$) en futuros CME (ES y NQ) tras deducir comisiones y deslizamientos reales?
+Generar un rendimiento ajustado por riesgo positivo y robusto (Sharpe neto $\ge 1.00$, Deflated Sharpe $\ge 95\%$ y $N \ge 100$ trades) en futuros CME (ES y NQ)?
 
 ---
 
-## 2. Espacio Paramétrico Reducido (Contabilidad Exacta de Pruebas: 32 Combinaciones)
+## 2. Grilla Reducida (Exactamente 32 Combinaciones por Activo)
 
-Se evalúa un único timeframe: **4 horas (4h)**.
-El espacio de búsqueda queda estrictamente acotado a **32 combinaciones por activo**:
+La salida por cruce contrario de SMAs es una regla intrínseca de salida de la estrategia y **no añade combinaciones a la grilla**.
+El espacio cerrado queda fijado en **32 combinaciones por activo**:
 
-1. **Arquitecturas de Medias Móviles (8 variantes):**
+1. **Arquitecturas SMA (8 variantes):**
    * 2 SMAs: (20, 150), (20, 200), (30, 150), (30, 200)
    * 3 SMAs: (20, 100, 150), (20, 100, 200), (30, 100, 150), (30, 100, 200)
-2. **Configuraciones MACD (2 variantes):**
+2. **Variantes MACD (2 variantes):**
    * Estándar: (12, 26, 9)
    * Lento / Suave: (16, 35, 9)
-3. **Filtro RSI (1 variante fija):**
-   * Periodo 14
-4. **Stop Loss ATR (2 variantes):**
-   * $k = 2.0$ y $k = 3.0$
-5. **Take Profit Multiplier (2 variantes):**
-   * $m = 1.5$ y $m = 2.0$
+3. **Filtro RSI (1 variante fija):** Periodo 14
+4. **Stop Loss ATR (2 variantes):** $k \in \{2.0, 3.0\}$
+5. **Take Profit (1 variante fija):** $m = 2.0$ (Risk/Reward 1:2)
 
-$$\text{Total combinaciones por activo} = 8 \times 2 \times 1 \times 2 \times 2 = 32 \text{ combinaciones.}$$
+$$\text{Total combinaciones por activo} = 8 \times 2 \times 1 \times 2 \times 1 = 32 \text{ combinaciones.}$$
 
 ---
 
-## 3. Protocolo de Partición Cronológica y Aislamiento del Holdout
+## 3. Partición de Datos y Aislamiento del Holdout
 
-Para garantizar la integridad científica, el histórico total (2010 a 2026, 16.36 años, 26,084 barras de 4h) se divide en tres bloques temporales disjuntos:
-1. **Entrenamiento (60%):** ~Junio 2010 a Mayo 2020 (~10 años). Aquí y solo aquí se ejecuta la exploración de la grilla de 32 combinaciones.
-2. **Validación (20%):** ~Junio 2020 a Febrero 2023 (~2.7 años). Aquí se selecciona la **única configuración finalista** (máximo Sharpe en validación).
-3. **HOLDOUT / Test Final (20%):** ~Marzo 2023 a Octubre 2026 (~3.6 años).
-   * **Regla de Bloqueo Físico:** Se almacena en `data/locked_holdout/`. Ningún script de optimización ni grid search tiene acceso a este directorio.
-   * **Regla de Un Solo Intento:** Se evalúa **UNA sola vez** con la única configuración finalista elegida en validación. El resultado se reporta tal cual, sin posibilidad de reajuste.
+### A. Futuros CME (ES y NQ):
+* **DESARROLLO (2017-12 a 2026-10):** Datos ya inspeccionados en pruebas previas (declarado explícitamente).
+  * **Entrenamiento (70%):** 2017-12-15 a 2024-02-23 (9,902 barras de 4h). Se corre la grilla de 32 combinaciones.
+  * **Validación (30%):** 2024-02-23 a 2026-10-19 (4,245 barras de 4h). Se elige la mejor configuración.
+  * **Walk-Forward:** Evaluado **exclusivamente dentro de este tramo 2017-2026** (ventanas rodantes de 3 años train / 1 año test).
+* **HOLDOUT BLOQUEADO (2010-06 a 2017-12):** 
+  * Totalmente virgen, jamás visto en desarrollo.
+  * Guardado en `data/locked_holdout/` con hashes SHA-256 registrados.
+  * **NO se abre, grafica ni analiza hasta la evaluación final única.**
+
+### B. Criptoactivos (BTC y ETH):
+* **Estatus:** Exclusivamente **exploratorio y descriptivo**.
+* No otorga veredicto de aprobación ni se incluye en cartera combinada a menos que cumpla $N \ge 100$ trades independientes.
 
 ---
 
-## 4. Criterios Cuantitativos de Aceptación (Condiciones para Aprobación)
+## 4. Criterios de Aprobación Cuantitativos (Fijados de Antemano)
 
-Para que la estrategia se considere validada para implementación, debe cumplir **todos y cada uno** de los siguientes criterios en el Holdout fuera de muestra:
-
-1. **Muestra Mínima:** $N \ge 100$ operaciones cerradas en el periodo total evaluado ($\ge 30$ en holdout).
-2. **Sharpe Neto Anualizado:** $\ge 1.00$ tras comisiones y deslizamiento.
-3. **Factor de Beneficio (Profit Factor):** $\ge 1.30$.
-4. **Drawdown Máximo Relativo:** $\le 25\%$ del capital nocional.
-5. **Robustez Temporal Walk-Forward:** $\ge 60\%$ de las ventanas rodantes fuera de muestra deben tener PnL neto estrictamente positivo y Sharpe medio positivo.
-6. **Significancia frente al Azar (Deflated Sharpe Ratio):** $\ge 95\%$ ($p < 0.05$) ajustado por las 32 pruebas del pre-registro.
-7. **Superioridad frente a Líneas Base:** Superar al Buy & Hold del mismo periodo y a la versión Solo-SMA.
-
-Si la estrategia incumple cualquiera de estos criterios, el veredicto será **REJECTED (NO APROBADA)**. Un resultado negativo documentado con honestidad es un resultado científico válido.
+1. **Muestra Mínima:**
+   * $N \ge 100$ trades agregados en las ventanas OOS del Walk-Forward (periodo 2017-2026).
+   * $N \ge 100$ trades en el Holdout bloqueado (periodo 2010-2017) por activo (ES y NQ por separado).
+2. **Sharpe Neto Anualizado:** $\ge 1.00$ en Holdout (anualizado por $\sqrt{252}$).
+3. **Factor de Beneficio:** $\ge 1.30$.
+4. **Drawdown Relativo Máximo:** $\le 20\%$ sobre un capital base fijado de:
+   * **ES:** \$100,000 USD de capital base operando 1 contrato E-mini (Max DD en dólares $\le \$20,000$ USD).
+   * **NQ:** \$150,000 USD de capital base operando 1 contrato E-mini (Max DD en dólares $\le \$30,000$ USD).
+5. **Robustez Temporal Walk-Forward:** $\ge 60\%$ de las ventanas fuera de muestra con PnL neto positivo en el periodo 2017-2026.
+6. **Deflated Sharpe Ratio (DSR):** $\ge 95\%$ ($p < 0.05$) ajustado por las 32 combinaciones de la grilla.
