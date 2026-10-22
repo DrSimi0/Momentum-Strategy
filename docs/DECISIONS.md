@@ -68,3 +68,8 @@ Formato: decisión · alternativas · motivo. Ordenadas por fecha de adopción.
 - **Decisión:** Se declara formalmente el veredicto **REJECTED** para la estrategia SMA + MACD + RSI en ES, NQ, BTC-USDT y ETH-USDT. En el Holdout bloqueado (2023-2026 en futuros, 2025-2026 en cripto), todos los activos arrojaron Sharpe neto negativo (-0.52 en ES, -0.20 en NQ, -1.30 en BTC, -0.73 en ETH) y colapsaron en el Walk-Forward de 14 ventanas (<43% positivas).
 - **Alternativas:** Ensamblar la cartera multiactivo forzando ponderaciones.
 - **Motivo:** En cumplimiento de la Etapa 5 del pre-registro, no se despliega una cartera combinada sobre estrategias cuyos activos individuales carecen de edge validado.
+
+## D-013 · Veredicto Definitivo del Holdout Bloqueado 2010–2017: REJECTED (2026-10-21)
+- **Decisión:** Se evaluaron formalmente sobre el Holdout Bloqueado (2010-06 a 2017-12, 7.5 años) las configuraciones finalistas de desarrollo fijadas en validación para ES y NQ. Se declara formalmente el veredicto **REJECTED (NO APROBADA)** para ambas.
+- **Evidencia Empírica:** Con muestras estadísticamente sólidas (169 trades en ES y 114 trades en NQ, cumpliendo $N \ge 100$), ambas sufrieron pérdidas severas (-$39,519 USD en ES con Sharpe -2.70; -$27,581 USD en NQ con Sharpe -1.88) y drawdowns inaceptables (48.0% en ES y 21.8% en NQ), mientras Buy & Hold rindió +153.8% y +257.0%.
+- **Motivo Metodológico:** El resultado confirma que los rendimientos de validación en 2024-2026 fueron un espejismo por sobreajuste al ciclo alcista reciente. La estrategia carece de edge estructural.
