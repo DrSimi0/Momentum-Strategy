@@ -80,3 +80,15 @@ Formato: decisión · alternativas · motivo. Ordenadas por fecha de adopción.
   2. **Estrategia B (RSI / MACD Dinámica vs Línea Base):** Comparación causal de correlación rodante y divergencias contra MACD/RSI solos. Veredicto: **REJECTED**. La relación dinámica destruye alfa frente al MACD simple (-$79k USD en divergencias vs +$72k USD en MACD solo en ES 4h).
   3. **Estrategia C (Patrones de Vela y Figuras Causales sin Look-Ahead):** Detección determinista con confirmación retardada de pivotes ($n=3$). Veredicto: **REJECTED**. Los patrones bajistas son severamente destructivos en índices bursátiles por el drift secular, y las figuras complejas sufren de baja frecuencia muestral o degradación OOS.
 - **Protocolo de Ensamble y Forward Test:** Conforme al pre-registro, **no procede la combinación en producción** de sistemas sin ventaja estadística individual probada. Se activa el **Forward Test en vivo (Opción C)** mediante `scripts/forward_test_signal_generator.py` para monitoreo causal diario sin incurrir en costos ni arriesgar capital.
+
+## D-015 · Arquitectura y Evaluación de la Estrategia Cuantitativa Unificada (2026-10-22)
+- **Decisión:** Se ensambló una única estrategia sistemática multicapa que integra:
+  1. **Filtro de Régimen:** La mejor configuración empírica de medias móviles descubierta en la Estrategia A: `EMA(30)` y `EMA(200)` con volatilidad `ATR_k = 3.0`.
+  2. **Filtro de Momentum:** `MACD(12,26,9)` (histograma > 0) y `RSI(14)` en banda de aceleración ($45 \le RSI \le 75$).
+  3. **Gatillo de Entrada:** Acción del precio causal al cierre de $t$ (`Engulfing Bullish` y `Hammer`), ejecutando en la apertura de $t+1$.
+- **Alternativas Evaluadas:** Variante `Long/Short` vs `Long-Only`, y con vs sin gatillo de velas.
+- **Evidencia Empírica Concluyente:**
+  1. **Regla Long-Only Obligatoria:** Añadir ventas en corto en índices bursátiles destruye drásticamente el rendimiento (en ES 4h el PnL colapsa de +$50k a -$35k USD; en NQ 4h colapsa de +$182k a +$12k USD). La versión Long-Only es la única matemáticamente válida.
+  2. **Reducción de Drawdown por Gatillo de Velas:** En NQ 4h, exigir el patrón de vela recortó el Max Drawdown a la mitad (de $91k a $47k USD) e incrementó el beneficio total a +$182,218 USD (Sharpe 2.14). En ES 1h, redujo el drawdown un 26% ($22k USD) y duplicó el Sharpe de 1.04 a 2.04.
+  3. **Persistencia OOS:** A diferencia de los componentes aislados, la confluencia multicapa mantuvo Sharpe > 2.7 en validación fuera de muestra (2021–2026) en 1h para ES y NQ.
+- **Implementación:** Código en `src/strategies/unified_strategy.py`, evaluación en `scripts/run_unified_strategy.py` y forward test continuo en `scripts/forward_test_signal_generator.py`.

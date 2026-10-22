@@ -14,6 +14,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.strategies.strategy_c_patterns import detect_candle_patterns_causal, detect_chartist_figures_causal
+from src.strategies.unified_strategy import UnifiedStrategyParams, generate_unified_signals
 from src.indicators.technical import compute_ema, compute_macd, compute_rsi
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -108,7 +109,13 @@ def run_forward_signal_check():
             elif candle_pats["engulfing_bear"][latest_idx]:
                 sig_c = "SELL_ENGULFING"
 
+            # 4. Estrategia Unificada (Confluencia EMA 30/200 + MACD/RSI + Price Action)
+            unified_params = UnifiedStrategyParams(fast_ema=30, slow_ema=200, long_only=True, use_candle_trigger=True)
+            u_long, _, _ = generate_unified_signals(df, unified_params)
+            sig_unified = "BUY" if u_long[latest_idx] else "HOLD"
+
             signals = {
+                "Strategy_Unified_LongOnly": sig_unified,
                 "Strategy_A_EMA": sig_a,
                 "Strategy_B_MACD": sig_b,
                 "Strategy_C_Patterns": sig_c,
