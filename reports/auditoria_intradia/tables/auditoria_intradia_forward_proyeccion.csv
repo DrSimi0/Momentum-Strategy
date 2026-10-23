@@ -1,0 +1,7 @@
+Configuracion,Activo,TF,Total_Trades_16y,Trades_Por_Año,Años_Para_N100_Forward,Meses_Para_N100_Forward
+1_NQ_15m_Optimizada,NQ,15m,596,36.43,2.74,32.9
+2_NQ_15m_Linea_Base,NQ,15m,829,50.67,1.97,23.7
+3_ES_15m_Linea_Base,ES,15m,829,50.67,1.97,23.7
+4_NQ_5m_Optimizada,NQ,5m,1373,83.92,1.19,14.3
+5_ES_5m_Agresiva,ES,5m,1607,98.23,1.02,12.2
+6_NQ_5m_MOC_Sin_Volatilidad,NQ,5m,2642,161.49,0.62,7.4

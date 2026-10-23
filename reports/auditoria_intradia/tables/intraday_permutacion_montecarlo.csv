@@ -1,0 +1,7 @@
+Configuracion,PnL_Real_USD,PnL_Medio_Aleatorio_USD,P_Valor_Empírico,Percentil_%,Bate_Al_Azar_p05
+1_NQ_15m_Optimizada,136951.46,70137.37,0.1793,82.07,NO
+2_NQ_15m_Linea_Base,96147.77,156008.12,0.714,28.6,NO
+3_ES_15m_Linea_Base,91902.33,91690.73,0.4998,50.02,NO
+4_NQ_5m_Optimizada,56202.31,55061.96,0.4938,50.62,NO
+5_ES_5m_Agresiva,37020.58,1188.26,0.1404,85.96,NO
+6_NQ_5m_MOC_Sin_Volatilidad,-12601.78,113718.0,0.9057,9.43,NO

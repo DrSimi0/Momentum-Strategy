@@ -1,0 +1,13 @@
+Configuracion,Activo,TF,Riesgo_%,Contratos_Micro_Aprox,Total_Net_PnL_USD,CAGR_%,Peor_Dia_USD,Max_Trailing_DD_USD,Pasa_Daily_Loss_50k,Pasa_Trailing_DD_50k,Apta_Prop_Firm_50k,Apta_Prop_Firm_100k
+1_NQ_15m_Optimizada,MNQ,15m,0.5,2,26436.69,2.63,-3423.4,6573.96,False,False,False,False
+1_NQ_15m_Optimizada,MNQ,15m,1.0,4,52873.38,4.51,-6846.8,13147.91,False,False,False,False
+2_NQ_15m_Linea_Base,MNQ,15m,0.5,2,17903.15,1.89,-3423.4,13208.62,False,False,False,False
+2_NQ_15m_Linea_Base,MNQ,15m,1.0,4,35806.31,3.36,-6846.8,26417.24,False,False,False,False
+3_ES_15m_Linea_Base,MES,15m,0.5,1,8527.03,0.97,-656.2,2441.83,True,False,False,True
+3_ES_15m_Linea_Base,MES,15m,1.0,3,25581.1,2.56,-1968.6,7325.48,False,False,False,False
+4_NQ_5m_Optimizada,MNQ,5m,0.5,2,9043.66,1.02,-1668.81,6311.9,False,False,False,False
+4_NQ_5m_Optimizada,MNQ,5m,1.0,4,18087.32,1.91,-3337.61,12623.8,False,False,False,False
+5_ES_5m_Agresiva,MES,5m,0.5,1,2416.46,0.29,-402.45,1233.09,True,True,True,True
+5_ES_5m_Agresiva,MES,5m,1.0,3,7249.38,0.83,-1207.35,3699.26,False,False,False,False
+6_NQ_5m_MOC_Sin_Volatilidad,MNQ,5m,0.5,2,-6747.56,-0.88,-1154.97,18656.38,False,False,False,False
+6_NQ_5m_MOC_Sin_Volatilidad,MNQ,5m,1.0,4,-13495.11,-1.9,-2309.93,37312.76,False,False,False,False

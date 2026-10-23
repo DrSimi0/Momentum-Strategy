@@ -92,3 +92,35 @@ Formato: decisión · alternativas · motivo. Ordenadas por fecha de adopción.
   2. **Reducción de Drawdown por Gatillo de Velas:** En NQ 4h, exigir el patrón de vela recortó el Max Drawdown a la mitad (de $91k a $47k USD) e incrementó el beneficio total a +$182,218 USD (Sharpe 2.14). En ES 1h, redujo el drawdown un 26% ($22k USD) y duplicó el Sharpe de 1.04 a 2.04.
   3. **Persistencia OOS:** A diferencia de los componentes aislados, la confluencia multicapa mantuvo Sharpe > 2.7 en validación fuera de muestra (2021–2026) en 1h para ES y NQ.
 - **Implementación:** Código en `src/strategies/unified_strategy.py`, evaluación en `scripts/run_unified_strategy.py` y forward test continuo en `scripts/forward_test_signal_generator.py`.
+
+## D-016 · Bifurcación en Dos Ramas y Optimización en Menor Temporalidad M5/M15 (2026-10-22)
+- **Decisión:** Conforme a la instrucción del usuario, se evaluó la estrategia unificada en M15 y M5. Al comprobarse que en M5 el Sharpe se deteriora severamente (NQ 5m Sharpe 0.84, BTC 5m Sharpe -5.93) y el costo de comisiones consume más de $34,000 USD, se bifurcó el repositorio en dos ramas:
+  1. **Rama 1 (`main`):** Conserva la estrategia unificada swing en temporalidades mayores (**1h y 4h**), con Sharpe 2.04 a 2.45 y mínima fricción.
+  2. **Rama 2 (`feature/lower-tf-m5-m15`):** Rama especializada en optimización intradiaria con 4 mecanismos:
+     - Filtro horario RTH institucional (10:00 a 15:15 ET).
+     - Cierre forzoso MOC a las 15:50 ET (sin riesgo overnight).
+     - Medias de microestructura intradiaria (EMA 20 y EMA 80).
+     - Filtro de expansión de volatilidad (`ATR >= 0.95 * SMA(ATR, 40)`).
+- **Resultado en la Rama 2:**
+  - En **NQ 15m**, la configuración optimizada elevó el Sharpe de **1.19 a 1.88**, subió el beneficio neto a **+$136,951 USD** (+$40k vs línea base) y recortó el Max Drawdown a la **mitad** (de $65,795 a **$32,821 USD**).
+  - En **M5**, el filtro de volatilidad rescató el PnL neto de pérdidas a positivo (+$56,202 USD en NQ), pero demostró que 5 minutos es el límite inferior donde la microestructura de comisiones impone un techo al Sharpe.
+
+## D-017 · Veredicto de Auditoría Estricta: Estrategia Unificada Declarada Exploratoria y Descalificada (2026-10-23)
+- **Decisión:** Se sometió la Estrategia Cuantitativa Unificada a una auditoría cuantitativa integral sin filtros optimistas. Se declara formalmente como **EXPLORATORIA (SIN HOLDOUT VIRGEN)** y con veredicto **REJECTED (NO APROBADA PARA PRODUCCIÓN)**.
+- **Evidencia Empírica Concluyente:**
+  1. **Corrección de Sharpe Diario:** El Sharpe real anualizado ($\times \sqrt{252}$) sobre la curva diaria es de **0.63 en NQ 1h** y **0.55 en ES 1h** (el valor previo de 2.45 fue un artefacto por calcular Sharpe por trade).
+  2. **Inviabilidad en Prop Firms:** El Max Drawdown histórico (\$53,954 USD en NQ E-mini y \$5,395 USD en Micro MNQ) excede holgadamente los límites permitidos (\$2k-\$3k USD).
+  3. **Fracaso en Test de Permutación (10,000 iteraciones):** El p-valor empírico es de **$p = 0.4586$ en NQ** y **$p = 0.5062$ en ES**. Comprar aleatoriamente con la misma exposición genera exactamente el mismo rendimiento medio. Todo el PnL proviene del drift secular del mercado.
+  4. **Deflated Sharpe Ratio (DSR):** Con el espacio de búsqueda real $M=338$, el DSR es de apenas **13.27% en NQ** y **7.49% en ES** ($\ll 95\%$).
+  5. **Concentración Extrema:** Más del **50.6%** de todas las ganancias en NQ y el **111.9%** en ES 4h dependieron de solo 5 operaciones.
+  6. **Racha Negativa Prolongada:** Tres años consecutivos en pérdidas (2021, 2022 y 2023) acumulando -\$25,500 USD de drawdown.
+- **Consulta Databento API (Sin Descargar):** Costo verificado con `metadata.get_cost` para 2010–2026: YM (\$19.67), RTY (\$10.90), GC (\$0.92), CL (\$19.82), Total \$51.31 USD. Proyección forward test: 6.6 años para $N \ge 100$ trades.
+
+## D-018 · Veredicto de Auditoría Estricta: Rama Intradía M15/M5 Declarada Exploratoria y Descalificada (2026-10-23)
+- **Decisión:** Se auditó rigurosamente la rama intradía (`feature/lower-tf-m5-m15`) sobre las 6 configuraciones pre-registradas en `PREREGISTRO_INTRADIA.md`. Se declara formalmente como **EXPLORATORIA (SIN HOLDOUT VIRGEN)** y con veredicto **REJECTED (DESCALIFICADA PARA PRODUCCIÓN Y PROP FIRMS)**.
+- **Evidencia Empírica Concluyente:**
+  1. **Aclaración de Sharpe y Calmar (NQ 15m):** El Sharpe anterior de 1.88 era un cálculo por trade multiplicado por $\sqrt{252}$; sobre la curva de equity diaria real de 4,115 días, el Sharpe diario es de **0.75**. El valor de 4.17 era el ratio de PnL total acumulado a Drawdown inicial, mientras que el **Calmar real anualizado es de 0.53**.
+  2. **Inviabilidad en Prop Firms:** En `NQ 15m Optimizada`, el peor día de pérdidas en micro contratos MNQ fue de **-$1,710.90 USD** (viola el límite diario de -$1,000 USD de cuentas de $50k) y el Trailing Drawdown fue de **$3,282.18 USD** (viola los límites de $2,000 y $3,000 USD). La única configuración que pasa los límites (`ES 5m`) solo rinde un CAGR de **+3.38% anual**, insuficiente para superar cualquier examen de fondeo.
+  3. **Falta de Alfa Frente al Azar:** En el Test de Permutación con 10,000 iteraciones, `NQ 15m Optimizada` arrojó un p-valor empírico de **$p = 0.1793$** (no alcanza significancia estadística $p < 0.05$), y las versiones en 5m arrojaron $p \approx 0.50$ (idénticas a tirar una moneda).
+  4. **DSR:** Con el espacio acumulado de minería $M=344$, el DSR es de solo **29.40%** ($\ll 95\%$).
+  5. **Concentración:** El **43.1% del PnL en NQ 15m** y el **71.3% en la línea base** dependieron de únicamente 5 trades.

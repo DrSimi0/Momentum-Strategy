@@ -1,0 +1,17 @@
+{
+  "candidate_symbols": [
+    "YM.c.0",
+    "RTY.c.0",
+    "GC.c.0",
+    "CL.c.0"
+  ],
+  "cost_estimates_usd": {
+    "YM.c.0": 19.668389707804,
+    "RTY.c.0": 10.90396232903,
+    "GC.c.0": 0.920359119773,
+    "CL.c.0": 19.815863147378,
+    "total": 51.308574303985
+  },
+  "years_for_100_trades_1h": 6.6,
+  "years_for_100_trades_4h": 6.76
+}
