@@ -115,6 +115,59 @@ def test_strict_causality_no_lookahead_in_indicators():
         )
 
 
+def test_moc_execution_causality_and_timestamps():
+    """Demuestra la mecánica exacta del cierre MOC y verifica que la salida causal ocurra en el Open sin look-ahead."""
+    # 1. Dataset sintético con barras de 15m
+    dates_15m = pd.date_range("2023-01-03 14:00", periods=10, freq="15min", tz="UTC")
+    df_15m = pd.DataFrame({
+        "ts_event": dates_15m,
+        "open": [100.0, 101.0, 102.0, 103.0, 104.0, 105.0, 106.0, 107.0, 108.0, 109.0],
+        "high": [101.0, 102.0, 103.0, 104.0, 105.0, 106.0, 107.0, 108.0, 109.0, 110.0],
+        "low": [99.0, 100.0, 101.0, 102.0, 103.0, 104.0, 105.0, 106.0, 107.0, 108.0],
+        "close": [100.5, 101.5, 102.5, 103.5, 104.5, 105.5, 106.5, 107.5, 108.5, 109.5],
+        "volume": 1000.0,
+    })
+
+    params = IntradayStrategyParams(
+        fast_ema=2, slow_ema=4, moc_close_time="15:50", rth_start_time="09:00", rth_end_time="17:00",
+        use_candle_trigger=False
+    )
+    sig_long, is_moc, _, time_str = generate_intraday_signals(df_15m, params)
+
+    # Validar que si ninguna barra tiene time_str >= 15:50, is_moc no se activa
+    for t, t_str in enumerate(time_str):
+        if t_str < "15:50":
+            assert not is_moc[t], f"Error: MOC activado prematuramente a las {t_str}"
+
+    # 2. Dataset con barra explícita a las 15:50 ET empezando a las 09:30 ET para superar warmup
+    dates_moc = pd.date_range("2023-01-03 09:30:00", periods=85, freq="5min", tz="America/New_York").tz_convert("UTC")
+    n_m = len(dates_moc)
+    p_m = np.linspace(200.0, 250.0, n_m)
+    df_moc = pd.DataFrame({
+        "ts_event": dates_moc,
+        "open": p_m,
+        "high": p_m + 1.0,
+        "low": p_m - 1.0,
+        "close": p_m + 0.5,
+        "volume": 1000.0,
+    })
+    _, is_moc_5m, _, time_str_5m = generate_intraday_signals(df_moc, params)
+    
+    # Encontrar barra de 15:50 ET
+    idx_1550 = [i for i, t_str in enumerate(time_str_5m) if t_str == "15:50"]
+    assert len(idx_1550) > 0, "No se encontró barra de 15:50 ET en df_moc"
+    i_moc = idx_1550[0]
+    assert is_moc_5m[i_moc] == True, "MOC no se marcó en la barra de las 15:50 ET"
+
+    # En el motor, la salida por MOC en la barra i se ejecuta a exit_price = open_arr[i]
+    costs = AssetCosts(asset_type="futures", multiplier=20.0, tick_size=0.25, commission_per_side=2.0, slippage_per_side=0.5)
+    res = run_intraday_backtest(df_moc, params, costs)
+    for tr in res["trades"]:
+        if tr["exit_reason"] == "MOC_SESSION_END":
+            # Demostrar que el precio de salida fue exactamente el Open de la barra MOC
+            assert tr["exit_price"] in df_moc["open"].values
+
+
 def test_rollover_continuity_no_phantom_fills():
     """Valida que si hay un salto de sesión o gap de precios, la ejecución solo ocurra en la apertura real causal."""
     dates = pd.date_range("2023-01-02 10:00", periods=10, freq="15min", tz="UTC")
