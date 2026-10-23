@@ -104,3 +104,14 @@ Formato: decisión · alternativas · motivo. Ordenadas por fecha de adopción.
 - **Resultado en la Rama 2:**
   - En **NQ 15m**, la configuración optimizada elevó el Sharpe de **1.19 a 1.88**, subió el beneficio neto a **+$136,951 USD** (+$40k vs línea base) y recortó el Max Drawdown a la **mitad** (de $65,795 a **$32,821 USD**).
   - En **M5**, el filtro de volatilidad rescató el PnL neto de pérdidas a positivo (+$56,202 USD en NQ), pero demostró que 5 minutos es el límite inferior donde la microestructura de comisiones impone un techo al Sharpe.
+
+## D-017 · Veredicto de Auditoría Estricta: Estrategia Unificada Declarada Exploratoria y Descalificada (2026-10-23)
+- **Decisión:** Se sometió la Estrategia Cuantitativa Unificada a una auditoría cuantitativa integral sin filtros optimistas. Se declara formalmente como **EXPLORATORIA (SIN HOLDOUT VIRGEN)** y con veredicto **REJECTED (NO APROBADA PARA PRODUCCIÓN)**.
+- **Evidencia Empírica Concluyente:**
+  1. **Corrección de Sharpe Diario:** El Sharpe real anualizado ($\times \sqrt{252}$) sobre la curva diaria es de **0.63 en NQ 1h** y **0.55 en ES 1h** (el valor previo de 2.45 fue un artefacto por calcular Sharpe por trade).
+  2. **Inviabilidad en Prop Firms:** El Max Drawdown histórico (\$53,954 USD en NQ E-mini y \$5,395 USD en Micro MNQ) excede holgadamente los límites permitidos (\$2k-\$3k USD).
+  3. **Fracaso en Test de Permutación (10,000 iteraciones):** El p-valor empírico es de **$p = 0.4586$ en NQ** y **$p = 0.5062$ en ES**. Comprar aleatoriamente con la misma exposición genera exactamente el mismo rendimiento medio. Todo el PnL proviene del drift secular del mercado.
+  4. **Deflated Sharpe Ratio (DSR):** Con el espacio de búsqueda real $M=338$, el DSR es de apenas **13.27% en NQ** y **7.49% en ES** ($\ll 95\%$).
+  5. **Concentración Extrema:** Más del **50.6%** de todas las ganancias en NQ y el **111.9%** en ES 4h dependieron de solo 5 operaciones.
+  6. **Racha Negativa Prolongada:** Tres años consecutivos en pérdidas (2021, 2022 y 2023) acumulando -\$25,500 USD de drawdown.
+- **Consulta Databento API (Sin Descargar):** Costo verificado con `metadata.get_cost` para 2010–2026: YM (\$19.67), RTY (\$10.90), GC (\$0.92), CL (\$19.82), Total \$51.31 USD. Proyección forward test: 6.6 años para $N \ge 100$ trades.

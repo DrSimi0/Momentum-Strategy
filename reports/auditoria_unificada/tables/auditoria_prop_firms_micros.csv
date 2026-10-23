@@ -1,0 +1,5 @@
+Activo,Timeframe,Emini_Max_DD_USD,Emini_Max_DD_%,Cabe_Prop_50k_Emini,Micro_Max_DD_USD,Micro_Max_DD_%,Micro_Net_PnL_USD,Cabe_Prop_50k_Micro,Cabe_Prop_100k_Micro,Riesgo_0.5pct_Max_DD_USD,Riesgo_0.5pct_Cabe_Prop
+NQ,1h,53954.51,35.82,NO (Quiebra),5395.45,8.98,17466.56,"NO (Excede $2,000)","NO (Excede $3,000)",13121.21,NO
+NQ,4h,47418.68,29.77,NO (Quiebra),4741.87,6.5,18221.82,"NO (Excede $2,000)","NO (Excede $3,000)",13737.98,NO
+ES,1h,22976.05,22.65,NO (Quiebra),2297.61,3.78,11134.2,"NO (Excede $2,000)",SÍ,11776.64,NO
+ES,4h,43409.07,52.51,NO (Quiebra),4340.91,8.15,5083.07,"NO (Excede $2,000)","NO (Excede $3,000)",9096.92,NO
