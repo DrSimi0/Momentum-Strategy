@@ -1,0 +1,7 @@
+Configuracion,Emini_Peor_Dia_USD,Emini_Max_Trailing_DD_USD,Emini_Cabe_Prop_50k,Micro_Peor_Dia_USD,Micro_Max_Trailing_DD_USD,Micro_Pasa_Perdida_Diaria_50k,Micro_Pasa_Trailing_DD_50k,Micro_Apta_Prop_50k,Micro_Apta_Prop_100k
+1_NQ_15m_Optimizada,-17109.0,32821.78,NO (Quiebra),-1710.9,3282.18,"NO (Excede $1,000)","NO (Excede $2,000)",NO,NO
+2_NQ_15m_Linea_Base,-17109.0,65795.09,NO (Quiebra),-1710.9,6579.51,"NO (Excede $1,000)","NO (Excede $2,000)",NO,NO
+3_ES_15m_Linea_Base,-6554.0,24306.26,NO (Quiebra),-655.4,2430.63,SÍ,"NO (Excede $2,000)",NO,SÍ
+4_NQ_5m_Optimizada,-8328.03,30143.69,NO (Quiebra),-832.8,3014.37,SÍ,"NO (Excede $2,000)",NO,NO
+5_ES_5m_Agresiva,-4016.5,12018.85,NO (Quiebra),-401.65,1201.89,SÍ,SÍ,SÍ,SÍ
+6_NQ_5m_MOC_Sin_Volatilidad,-5758.83,75209.18,NO (Quiebra),-575.88,7520.92,SÍ,"NO (Excede $2,000)",NO,NO

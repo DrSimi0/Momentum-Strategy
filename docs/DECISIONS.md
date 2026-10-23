@@ -115,3 +115,12 @@ Formato: decisión · alternativas · motivo. Ordenadas por fecha de adopción.
   5. **Concentración Extrema:** Más del **50.6%** de todas las ganancias en NQ y el **111.9%** en ES 4h dependieron de solo 5 operaciones.
   6. **Racha Negativa Prolongada:** Tres años consecutivos en pérdidas (2021, 2022 y 2023) acumulando -\$25,500 USD de drawdown.
 - **Consulta Databento API (Sin Descargar):** Costo verificado con `metadata.get_cost` para 2010–2026: YM (\$19.67), RTY (\$10.90), GC (\$0.92), CL (\$19.82), Total \$51.31 USD. Proyección forward test: 6.6 años para $N \ge 100$ trades.
+
+## D-018 · Veredicto de Auditoría Estricta: Rama Intradía M15/M5 Declarada Exploratoria y Descalificada (2026-10-23)
+- **Decisión:** Se auditó rigurosamente la rama intradía (`feature/lower-tf-m5-m15`) sobre las 6 configuraciones pre-registradas en `PREREGISTRO_INTRADIA.md`. Se declara formalmente como **EXPLORATORIA (SIN HOLDOUT VIRGEN)** y con veredicto **REJECTED (DESCALIFICADA PARA PRODUCCIÓN Y PROP FIRMS)**.
+- **Evidencia Empírica Concluyente:**
+  1. **Aclaración de Sharpe y Calmar (NQ 15m):** El Sharpe anterior de 1.88 era un cálculo por trade multiplicado por $\sqrt{252}$; sobre la curva de equity diaria real de 4,115 días, el Sharpe diario es de **0.75**. El valor de 4.17 era el ratio de PnL total acumulado a Drawdown inicial, mientras que el **Calmar real anualizado es de 0.53**.
+  2. **Inviabilidad en Prop Firms:** En `NQ 15m Optimizada`, el peor día de pérdidas en micro contratos MNQ fue de **-$1,710.90 USD** (viola el límite diario de -$1,000 USD de cuentas de $50k) y el Trailing Drawdown fue de **$3,282.18 USD** (viola los límites de $2,000 y $3,000 USD). La única configuración que pasa los límites (`ES 5m`) solo rinde un CAGR de **+3.38% anual**, insuficiente para superar cualquier examen de fondeo.
+  3. **Falta de Alfa Frente al Azar:** En el Test de Permutación con 10,000 iteraciones, `NQ 15m Optimizada` arrojó un p-valor empírico de **$p = 0.1793$** (no alcanza significancia estadística $p < 0.05$), y las versiones en 5m arrojaron $p \approx 0.50$ (idénticas a tirar una moneda).
+  4. **DSR:** Con el espacio acumulado de minería $M=344$, el DSR es de solo **29.40%** ($\ll 95\%$).
+  5. **Concentración:** El **43.1% del PnL en NQ 15m** y el **71.3% en la línea base** dependieron de únicamente 5 trades.
