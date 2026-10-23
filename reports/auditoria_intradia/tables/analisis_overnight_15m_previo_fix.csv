@@ -1,0 +1,4 @@
+Configuracion,Activo,Total_Trades,Trades_Overnight,Trades_Intradia_Puro,Pct_Trades_Overnight,Barras_Held_Media,Barras_Held_Mediana,Barras_Held_Max,Dias_Held_Media,Dias_Held_Max,PnL_Total_USD,PnL_Intradia_USD,PnL_Overnight_USD,Pct_PnL_de_Overnight
+1_NQ_15m_Opt_PreFix,NQ,596,423,173,70.97,25.07,18.0,151,1.47,9.95,136951.46,-100089.19,237040.65,173.08
+2_NQ_15m_Base,NQ,829,697,132,84.08,39.67,28.0,401,2.42,22.11,96147.77,-162304.18,258451.95,268.81
+3_ES_15m_Base,ES,829,702,127,84.68,42.32,29.0,311,2.56,18.96,91902.33,-82382.73,174285.05,189.64

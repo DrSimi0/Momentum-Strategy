@@ -1,0 +1,9 @@
+Métrica,Pre_Fix_MOC_1550 (Fallido),Post_Fix_MOC_1545 (Efectivo)
+Total Trades,829,654
+Trades Overnight (%),84.68% (423 trades),0.00% (0 trades)
+Salidas por MOC,0 trades,474 trades
+PnL Neto Total USD,"+$91,902.33","+$63,586.81"
+Sharpe Oficial (Cap. Fijo $50k),0.58,0.60
+Max Drawdown USD,"$32,821.78","$23,505.09"
+Permutación Monte Carlo p-valor,p = 0.1793,p = 0.2695
+DSR (M=380),9.41%,11.69%

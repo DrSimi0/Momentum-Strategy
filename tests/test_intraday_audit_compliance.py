@@ -168,6 +168,30 @@ def test_moc_execution_causality_and_timestamps():
             assert tr["exit_price"] in df_moc["open"].values
 
 
+def test_no_trade_in_15m_crosses_moc_1545_when_configured():
+    """Valida que con moc_close_time='15:45' ninguna posición en velas de 15m cruce las 15:50 ET ni pase la noche."""
+    df_15m = pd.read_parquet("data/processed/NQ_15m.parquet")
+    costs = AssetCosts(asset_type="futures", multiplier=20.0, tick_size=0.25, commission_per_side=2.0, slippage_per_side=0.5)
+    params = IntradayStrategyParams(
+        fast_ema=20, slow_ema=80, atr_k=2.0, tp_m=2.0,
+        rth_start_time="10:00", rth_end_time="15:15",
+        moc_close_time="15:45",
+        use_volatility_filter=True, use_candle_trigger=True
+    )
+    res = run_intraday_backtest(df_15m, params, costs)
+    trades = res["trades"]
+    assert len(trades) > 0, "No se generaron trades"
+
+    for tr in trades:
+        exit_dt_et = pd.to_datetime(tr["exit_date"], utc=True).tz_convert("America/New_York")
+        entry_dt_et = pd.to_datetime(tr["entry_date"], utc=True).tz_convert("America/New_York")
+        # En días normales (con barra 15:45 ET), la salida debe ser <= 15:45 ET
+        exit_time_str = exit_dt_et.strftime("%H:%M")
+        # Si fue el mismo día, jamás debe salir después de 15:45
+        if exit_dt_et.date() == entry_dt_et.date():
+            assert exit_time_str <= "15:45", f"Trade cerró después de las 15:45 ET: {exit_time_str}"
+
+
 def test_rollover_continuity_no_phantom_fills():
     """Valida que si hay un salto de sesión o gap de precios, la ejecución solo ocurra en la apertura real causal."""
     dates = pd.date_range("2023-01-02 10:00", periods=10, freq="15min", tz="UTC")

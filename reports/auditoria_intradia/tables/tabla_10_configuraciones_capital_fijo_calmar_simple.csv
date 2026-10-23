@@ -1,0 +1,11 @@
+Grupo,Configuracion,Activo,TF,Capital_Base_USD,N_Trades,Win_Rate_%,Profit_Factor,PnL_Neto_Total_USD,Retorno_Anual_Simple_%,Sharpe_Oficial_Capital_Fijo,Max_DD_USD,Max_DD_%_Capital_Inicial,Calmar_Simple,Llego_a_Equity_Negativo
+Swing (H1/H4),Swing_1_ES_1h,ES,1h,50000.0,269,40.15,1.39,111341.96,13.61,0.51,22976.05,45.95,0.3,False
+Swing (H1/H4),Swing_2_NQ_1h,NQ,1h,50000.0,248,41.53,1.45,174665.62,21.35,0.5,53954.51,107.91,0.2,False
+Swing (H1/H4),Swing_3_ES_4h,ES,4h,50000.0,257,35.8,1.15,50830.65,6.21,0.19,43409.07,86.82,0.07,False
+Swing (H1/H4),Swing_4_NQ_4h,NQ,4h,50000.0,242,39.26,1.41,182218.2,22.28,0.41,47418.68,94.84,0.23,False
+Menor Temporalidad (M15/M5),Intra_1_NQ_15m_Opt,NQ,15m,50000.0,596,39.93,1.38,136951.46,16.74,0.58,32821.78,65.64,0.26,False
+Menor Temporalidad (M15/M5),Intra_2_NQ_15m_Base,NQ,15m,50000.0,829,38.36,1.12,96147.77,11.75,0.28,65795.09,131.59,0.09,False
+Menor Temporalidad (M15/M5),Intra_3_ES_15m_Base,ES,15m,50000.0,829,38.24,1.18,91902.33,11.24,0.43,24306.26,48.61,0.23,False
+Menor Temporalidad (M15/M5),Intra_4_NQ_5m_Opt,NQ,5m,50000.0,1373,42.68,1.13,56202.31,6.87,0.34,30143.69,60.29,0.11,False
+Menor Temporalidad (M15/M5),Intra_5_ES_5m_Agr,ES,5m,50000.0,1607,40.45,1.12,37020.58,4.53,0.4,12018.85,24.04,0.19,False
+Menor Temporalidad (M15/M5),Intra_6_NQ_5m_MOC_SinVol,NQ,5m,50000.0,2642,46.29,0.98,-12601.78,-1.54,-0.06,75209.18,150.42,-0.01,True
