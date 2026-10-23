@@ -1,0 +1,49 @@
+Configuracion,Escenario,PnL_Neto_USD,PnL_Medio_Trade_USD,Break_Even_Friction_Trade_USD,Friccion_Escenario_Trade_USD,Es_Rentable
+1_NQ_15m_Optimizada,"Base (0.5 tick, $2 comm)",136951.46,229.78,238.78,9.0,True
+1_NQ_15m_Optimizada,"Slip 1.0 tick, Comm $2",133971.46,224.78,238.78,14.0,True
+1_NQ_15m_Optimizada,"Slip 2.0 ticks, Comm $2",128011.46,214.78,238.78,24.0,True
+1_NQ_15m_Optimizada,"Stop Penalizado (+1 tick SL), Slip 0.5, Comm $2",135246.46,226.92,238.78,9.0,True
+1_NQ_15m_Optimizada,"Stop Penalizado (+1 tick SL), Slip 1.0, Comm $2",132266.46,221.92,238.78,14.0,True
+1_NQ_15m_Optimizada,"Comm -50% ($1.0), Slip 0.5 tick",138143.46,231.78,238.78,7.0,True
+1_NQ_15m_Optimizada,"Comm +50% ($3.0), Slip 0.5 tick",135759.46,227.78,238.78,11.0,True
+1_NQ_15m_Optimizada,"Retail Estresado (Slip 1.5, Comm $3, +1 tick SL)",128094.46,214.92,238.78,21.0,True
+2_NQ_15m_Linea_Base,"Base (0.5 tick, $2 comm)",96147.77,115.98,124.98,9.0,True
+2_NQ_15m_Linea_Base,"Slip 1.0 tick, Comm $2",92002.77,110.98,124.98,14.0,True
+2_NQ_15m_Linea_Base,"Slip 2.0 ticks, Comm $2",83712.77,100.98,124.98,24.0,True
+2_NQ_15m_Linea_Base,"Stop Penalizado (+1 tick SL), Slip 0.5, Comm $2",93707.77,113.04,124.98,9.0,True
+2_NQ_15m_Linea_Base,"Stop Penalizado (+1 tick SL), Slip 1.0, Comm $2",89562.77,108.04,124.98,14.0,True
+2_NQ_15m_Linea_Base,"Comm -50% ($1.0), Slip 0.5 tick",97805.77,117.98,124.98,7.0,True
+2_NQ_15m_Linea_Base,"Comm +50% ($3.0), Slip 0.5 tick",94489.77,113.98,124.98,11.0,True
+2_NQ_15m_Linea_Base,"Retail Estresado (Slip 1.5, Comm $3, +1 tick SL)",83759.77,101.04,124.98,21.0,True
+3_ES_15m_Linea_Base,"Base (0.5 tick, $2 comm)",91902.33,110.86,127.36,16.5,True
+3_ES_15m_Linea_Base,"Slip 1.0 tick, Comm $2",81539.83,98.36,127.36,29.0,True
+3_ES_15m_Linea_Base,"Slip 2.0 ticks, Comm $2",60814.83,73.36,127.36,54.0,True
+3_ES_15m_Linea_Base,"Stop Penalizado (+1 tick SL), Slip 0.5, Comm $2",85852.33,103.56,127.36,16.5,True
+3_ES_15m_Linea_Base,"Stop Penalizado (+1 tick SL), Slip 1.0, Comm $2",75489.83,91.06,127.36,29.0,True
+3_ES_15m_Linea_Base,"Comm -50% ($1.0), Slip 0.5 tick",93560.33,112.86,127.36,14.5,True
+3_ES_15m_Linea_Base,"Comm +50% ($3.0), Slip 0.5 tick",90244.33,108.86,127.36,18.5,True
+3_ES_15m_Linea_Base,"Retail Estresado (Slip 1.5, Comm $3, +1 tick SL)",63469.33,76.56,127.36,43.5,True
+4_NQ_5m_Optimizada,"Base (0.5 tick, $2 comm)",56202.31,40.93,49.93,9.0,True
+4_NQ_5m_Optimizada,"Slip 1.0 tick, Comm $2",49337.31,35.93,49.93,14.0,True
+4_NQ_5m_Optimizada,"Slip 2.0 ticks, Comm $2",35607.31,25.93,49.93,24.0,True
+4_NQ_5m_Optimizada,"Stop Penalizado (+1 tick SL), Slip 0.5, Comm $2",53002.31,38.6,49.93,9.0,True
+4_NQ_5m_Optimizada,"Stop Penalizado (+1 tick SL), Slip 1.0, Comm $2",46137.31,33.6,49.93,14.0,True
+4_NQ_5m_Optimizada,"Comm -50% ($1.0), Slip 0.5 tick",58948.31,42.93,49.93,7.0,True
+4_NQ_5m_Optimizada,"Comm +50% ($3.0), Slip 0.5 tick",53456.31,38.93,49.93,11.0,True
+4_NQ_5m_Optimizada,"Retail Estresado (Slip 1.5, Comm $3, +1 tick SL)",36526.31,26.6,49.93,21.0,True
+5_ES_5m_Agresiva,"Base (0.5 tick, $2 comm)",37020.58,23.04,39.54,16.5,True
+5_ES_5m_Agresiva,"Slip 1.0 tick, Comm $2",16933.08,10.54,39.54,29.0,True
+5_ES_5m_Agresiva,"Slip 2.0 ticks, Comm $2",-23241.92,-14.46,39.54,54.0,False
+5_ES_5m_Agresiva,"Stop Penalizado (+1 tick SL), Slip 0.5, Comm $2",26795.58,16.67,39.54,16.5,True
+5_ES_5m_Agresiva,"Stop Penalizado (+1 tick SL), Slip 1.0, Comm $2",6708.08,4.17,39.54,29.0,True
+5_ES_5m_Agresiva,"Comm -50% ($1.0), Slip 0.5 tick",40234.58,25.04,39.54,14.5,True
+5_ES_5m_Agresiva,"Comm +50% ($3.0), Slip 0.5 tick",33806.58,21.04,39.54,18.5,True
+5_ES_5m_Agresiva,"Retail Estresado (Slip 1.5, Comm $3, +1 tick SL)",-16593.42,-10.33,39.54,43.5,False
+6_NQ_5m_MOC_Sin_Volatilidad,"Base (0.5 tick, $2 comm)",-12601.78,-4.77,4.23,9.0,False
+6_NQ_5m_MOC_Sin_Volatilidad,"Slip 1.0 tick, Comm $2",-25811.78,-9.77,4.23,14.0,False
+6_NQ_5m_MOC_Sin_Volatilidad,"Slip 2.0 ticks, Comm $2",-52231.78,-19.77,4.23,24.0,False
+6_NQ_5m_MOC_Sin_Volatilidad,"Stop Penalizado (+1 tick SL), Slip 0.5, Comm $2",-16986.78,-6.43,4.23,9.0,False
+6_NQ_5m_MOC_Sin_Volatilidad,"Stop Penalizado (+1 tick SL), Slip 1.0, Comm $2",-30196.78,-11.43,4.23,14.0,False
+6_NQ_5m_MOC_Sin_Volatilidad,"Comm -50% ($1.0), Slip 0.5 tick",-7317.78,-2.77,4.23,7.0,False
+6_NQ_5m_MOC_Sin_Volatilidad,"Comm +50% ($3.0), Slip 0.5 tick",-17885.78,-6.77,4.23,11.0,False
+6_NQ_5m_MOC_Sin_Volatilidad,"Retail Estresado (Slip 1.5, Comm $3, +1 tick SL)",-48690.78,-18.43,4.23,21.0,False

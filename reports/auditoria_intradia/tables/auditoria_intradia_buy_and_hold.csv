@@ -1,0 +1,7 @@
+Configuracion,Activo,TF,N_Trades,Time_in_Market_%,Estrategia_CAGR_%,Estrategia_Sharpe,BuyHold_Total_Return_%,BuyHold_Sharpe_Full,BuyHold_Ajustado_Exposicion_CAGR_%,BuyHold_Ajustado_Exposicion_Sharpe,Bate_BuyHold_Ajustado
+1_NQ_15m_Optimizada,NQ,15m,596,13.86,8.22,0.58,1525.92,0.92,7.19,0.34,True
+2_NQ_15m_Linea_Base,NQ,15m,829,30.51,6.64,0.28,1525.92,0.92,11.17,0.51,False
+3_ES_15m_Linea_Base,ES,15m,829,32.56,6.45,0.43,628.69,0.79,7.05,0.45,False
+4_NQ_5m_Optimizada,NQ,5m,1373,12.42,4.62,0.34,1517.29,0.92,6.69,0.33,True
+5_ES_5m_Agresiva,ES,5m,1607,9.32,3.38,0.4,626.12,0.79,2.85,0.24,True
+6_NQ_5m_MOC_Sin_Volatilidad,NQ,5m,2642,25.96,-1.72,-0.06,1517.29,0.92,10.25,0.47,False
